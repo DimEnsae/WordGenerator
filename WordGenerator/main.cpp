@@ -11,5 +11,7 @@
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Que la fête commence !\n";
+    int a=3;
+    std::cout << a << std::endl;
     return 0;
 }
