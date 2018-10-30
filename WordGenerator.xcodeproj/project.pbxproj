@@ -25,9 +25,12 @@
 /* Begin PBXFileReference section */
 		272B5CE2217F5B5300011396 /* WordGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WordGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		272B5CE5217F5B5300011396 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		276CAEF321849AEF001512D5 /* Mot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mot.h; sourceTree = "<group>"; };
 		276CAEF52184A218001512D5 /* pokemon_names.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon_names.txt; sourceTree = "<group>"; };
 		276CAEF62184A706001512D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2788BE0D2188B70800FEE815 /* prenom.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prenom.txt; sourceTree = "<group>"; };
+		2788BE0E2188B70900FEE815 /* wordgenerator_python.ipynb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wordgenerator_python.ipynb; sourceTree = "<group>"; };
+		2788BE0F2188B70900FEE815 /* mobydick.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mobydick.txt; sourceTree = "<group>"; };
+		2788BE102188B70900FEE815 /* german_words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = german_words.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +47,10 @@
 		272B5CD9217F5B5300011396 = {
 			isa = PBXGroup;
 			children = (
+				2788BE102188B70900FEE815 /* german_words.txt */,
+				2788BE0F2188B70900FEE815 /* mobydick.txt */,
+				2788BE0D2188B70800FEE815 /* prenom.txt */,
+				2788BE0E2188B70900FEE815 /* wordgenerator_python.ipynb */,
 				276CAEF62184A706001512D5 /* README.md */,
 				276CAEF52184A218001512D5 /* pokemon_names.txt */,
 				272B5CE4217F5B5300011396 /* WordGenerator */,
@@ -63,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				272B5CE5217F5B5300011396 /* main.cpp */,
-				276CAEF321849AEF001512D5 /* Mot.h */,
 			);
 			path = WordGenerator;
 			sourceTree = "<group>";
