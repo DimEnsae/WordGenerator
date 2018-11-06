@@ -11,6 +11,7 @@ public:
   vecteurLettre(char lettreLigne,std::string listeLettre);
   vecteurLettre();//conctructeur sans rien avec des pointeurs nuls pour l'intitialisation de la matriceMot
   char getlettreLigne();
+  float getnombreOccurence(int i);
   void afficher();
   void afficherBis();
   vecteurLettre operator + (vecteurLettre v);
