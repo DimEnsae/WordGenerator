@@ -7,15 +7,13 @@
 //
 //BOSSER LES CONSTRUCTEURS PAR COPIE !!!!!!
 #include <iostream>
+
 #include<fstream>
 #include<string>
 //#include "vecteurLettre.h"
 //#include "matriceMot.h"
 //#include "matrice.h"
 #include "corpus.h"
-
-
-
 
 
 int main(int argc, const char * argv[]) {
