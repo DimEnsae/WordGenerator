@@ -16,5 +16,6 @@ class corpus{
   public :
   corpus(std::string cheminFichier, std::string listeLettre);// Il faudra remplir la matrice de transition en analysant le corpus
   void afficherMatriceTransition();
+  void afficherMatriceTransitionColoree();
   void genererUnMot(char lettreInitiale,int tailleMot);// Là on va pouvoir faire du récursif à mort
 };

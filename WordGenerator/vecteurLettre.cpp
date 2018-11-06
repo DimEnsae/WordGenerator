@@ -36,6 +36,9 @@ char vecteurLettre::getlettreLigne(){
   return(this->lettreLigne);
 }
 
+float vecteurLettre::getnombreOccurence(int i){
+  return(this->nombreOccurence[i]);
+}
 //Redéfinition du +
 vecteurLettre vecteurLettre::operator +(vecteurLettre v){
   vecteurLettre resultat=vecteurLettre(v.lettreLigne,v.listeLettre);
