@@ -12,9 +12,10 @@
 
 using namespace std;
 
+//name : path of the file, freq : frequency matrix
 int display_words (string name, vector<vector<int> > freq) {
     
-    ifstream myFile(name);
+    ifstream myFile(name); //open file
 
     if(myFile)
     {

@@ -2,6 +2,7 @@
 #include<string>
 #include <fstream>
 #include "corpus.h"
+
 //initialisation de l'objet matricede transition en amont
 corpus::corpus(std::string chemin,std::string listeLettre): matriceMotTransition(listeLettre){
 //lire un fichier générer les matrices mots et les additionner dans la foulée
