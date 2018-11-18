@@ -97,8 +97,10 @@ corpus_test2.afficherMatriceTransitionColoree();
 //corpus_test2.genererUnMot('s',7);
 //corpus_test3.genererUnMot('s',7);
 
-
-
+    
+std::string path = "../pokemon_names.txt";
+std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
+corpus c(path, alphabet);
 
 
   return 0;

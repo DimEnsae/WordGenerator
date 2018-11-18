@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		272B5CE6217F5B5300011396 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 272B5CE5217F5B5300011396 /* main.cpp */; };
+		275A504B21919F4D003089C7 /* vecteurLettre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 275A504721919F4C003089C7 /* vecteurLettre.cpp */; };
+		275A504C21919F4D003089C7 /* matriceMot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 275A504821919F4D003089C7 /* matriceMot.cpp */; };
+		275A504D21919F4D003089C7 /* corpus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 275A504921919F4D003089C7 /* corpus.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		272B5CE2217F5B5300011396 /* WordGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WordGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		272B5CE5217F5B5300011396 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		275A504521919F4C003089C7 /* matriceMot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matriceMot.h; sourceTree = "<group>"; };
+		275A504621919F4C003089C7 /* corpus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = corpus.h; sourceTree = "<group>"; };
+		275A504721919F4C003089C7 /* vecteurLettre.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vecteurLettre.cpp; sourceTree = "<group>"; };
+		275A504821919F4D003089C7 /* matriceMot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matriceMot.cpp; sourceTree = "<group>"; };
+		275A504921919F4D003089C7 /* corpus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = corpus.cpp; sourceTree = "<group>"; };
+		275A504A21919F4D003089C7 /* vecteurLettre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vecteurLettre.h; sourceTree = "<group>"; };
 		276CAEF52184A218001512D5 /* pokemon_names.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon_names.txt; sourceTree = "<group>"; };
 		276CAEF62184A706001512D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2788BE0D2188B70800FEE815 /* prenom.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prenom.txt; sourceTree = "<group>"; };
@@ -70,6 +79,12 @@
 			isa = PBXGroup;
 			children = (
 				272B5CE5217F5B5300011396 /* main.cpp */,
+				275A504921919F4D003089C7 /* corpus.cpp */,
+				275A504621919F4C003089C7 /* corpus.h */,
+				275A504821919F4D003089C7 /* matriceMot.cpp */,
+				275A504521919F4C003089C7 /* matriceMot.h */,
+				275A504721919F4C003089C7 /* vecteurLettre.cpp */,
+				275A504A21919F4D003089C7 /* vecteurLettre.h */,
 			);
 			path = WordGenerator;
 			sourceTree = "<group>";
@@ -130,7 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275A504C21919F4D003089C7 /* matriceMot.cpp in Sources */,
+				275A504B21919F4D003089C7 /* vecteurLettre.cpp in Sources */,
 				272B5CE6217F5B5300011396 /* main.cpp in Sources */,
+				275A504D21919F4D003089C7 /* corpus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
