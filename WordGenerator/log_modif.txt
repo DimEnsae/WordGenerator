@@ -1,3 +1,11 @@
 modification de la classe vecteurLigne :
 
 Si addition de deux vecteur ligne différents -> devient '?'
+
+
+
+
+Amelioration à effectuer : 
+
+-ordre chaine de markov > 1
+-

@@ -1,34 +1,28 @@
 #include "vecteurLettre.h"
-#include<stdlib.h>
+//#include<stdlib.h>
 #include<time.h>
 #include<string>
 #include<iostream>
-#include <cstdlib>
-#include <sys/timeb.h>
-#include <ctime>
+//#include <cstdlib>
+//#include <sys/timeb.h>
+//#include <ctime>
 
 //Constructeur principal
-vecteurLettre::vecteurLettre(char lettreLigne,std::string listeLettre){
-  this->listeLettre=listeLettre;
+vecteurLettre::vecteurLettre(char lettreLigne){
+  this->ascii = 128;
   this->lettreLigne=lettreLigne;
-  this->nomsColonnes=new char[listeLettre.length()];
-  this->nombreOccurence=new float[listeLettre.length()];
-  //Remplissage du nom des colonnes
-  for(int i=0;i<listeLettre.length();i++){
-    nomsColonnes[i]=listeLettre[i];
-  }
-  //Remplissage à 0 pour le moment des occurences
-  for(int i=0;i<listeLettre.length();i++){
+  this->nombreOccurence=new float[this->ascii];
+  //Remplissage à 0 (pour le moment) des occurences
+  for(int i=0;i<this->ascii;i++){
     nombreOccurence[i]=0;
   }
 }
 
 //Constructeur simplifié
 vecteurLettre::vecteurLettre(){
-  this->listeLettre="0";
+  this->ascii = 128;
   this->lettreLigne='0';
-  this->nomsColonnes=0;//Pointeurs à null
-  this->nombreOccurence=0;
+  this->nombreOccurence=new float[this->ascii];
 }
 
 //getter
@@ -36,44 +30,35 @@ char vecteurLettre::getlettreLigne(){
   return(this->lettreLigne);
 }
 
-float vecteurLettre::getnombreOccurence(int i){
-  return(this->nombreOccurence[i]);
+float vecteurLettre::getnombreOccurence(char a){
+  return(this->nombreOccurence[int(a)]);
 }
 
-//Affichage colonne
-void vecteurLettre::afficher(){
-    std::cout<<"La lettre considérée est : "<< this->lettreLigne <<std::endl;
-    std::cout<<"La liste des occurences par lettre suivante est : "<<std::endl;
-    for(int i=0;i<this->listeLettre.length();i++){
-        std::cout<<nomsColonnes[i]<<" "<<nombreOccurence[i]<<std::endl;
-    }
-}
-
-//Deuxième fonction d'affichage compatible avec une matrice mots
 void vecteurLettre::afficherBis(){
     std::cout<<std::endl;
     std::cout<<this->lettreLigne;
-    for(int i=0;i<this->listeLettre.length();i++){
-        std::cout<<" "<<this->nombreOccurence[i];
+    for(int i=0;i<this->ascii;i++){
+        std::cout<<" "<<char(i)<<":"<<this->nombreOccurence[i];
     }
     std::cout<<std::endl;
 }
 
 //Surcharge +
 vecteurLettre vecteurLettre::operator +(vecteurLettre v){
-  vecteurLettre resultat=vecteurLettre(v.lettreLigne,v.listeLettre);
-  for(int i= 0; i<listeLettre.length();i++){
+  vecteurLettre resultat=vecteurLettre(v.lettreLigne);
+  for(int i= 0; i<this->ascii;i++){
       resultat.nombreOccurence[i]=this->nombreOccurence[i]+v.nombreOccurence[i];
   }
     if (this->lettreLigne!=v.lettreLigne) {resultat.lettreLigne='?';}
         
   return resultat;
 }
+ 
 
 //Augmentation du compteur pour une des lettres suivantes
 void vecteurLettre::incrementerCompteurLettre(char lettre){
-  for(int i=0;i<listeLettre.length();i++){
-    if(this->listeLettre[i]==lettre){
+  for(int i=0;i<this->ascii;i++){
+    if(char(i)==lettre){
     this->nombreOccurence[i]++;
     }
   }
@@ -82,13 +67,14 @@ void vecteurLettre::incrementerCompteurLettre(char lettre){
 //Normalisation proba
 void vecteurLettre::rendreStochastique(){
   int total=0;
-  for (int i=0;i<this->listeLettre.length();i++) {
+  for (int i=0;i<this->ascii;i++) {
     total=total+this->nombreOccurence[i];
   };
-  for (int i=0;i<this->listeLettre.length();i++) {
+  for (int i=0;i<this->ascii;i++) {
     this->nombreOccurence[i]=this->nombreOccurence[i]/total;
   };
 }
+
 
 /*
 //Sélection de la lettre suivante étant donné le vecteur de proba d'inclusion

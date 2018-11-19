@@ -1,10 +1,10 @@
 #include<iostream>
 #include<string>
 #include <fstream>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include "corpus.h"
 
-//initialisation de l'objet matricede transition en amont
+//initialisation de l'objet matrice de transition en amont
 corpus::corpus(std::string chemin,std::string listeLettre): matriceMotTransition(listeLettre){
 //lire un fichier générer les matrices mots et les additionner dans la foulée
 //générer la matrice de proba
@@ -27,6 +27,8 @@ void corpus::afficherMatriceTransition(){
 this->matriceMotTransition.afficherMatrice();
 }
 
+
+/*
 void corpus::genererUnMot(char lettreInitiale, int tailleMot){
 //Etape 1 recherche de la ligne de la matrice de transition considérée
 vecteurLettre v;
@@ -95,3 +97,4 @@ for(int i=0; i<26;i++){
 //Sélection d'une lettre suivante à partir d'une lettre de la matrice de transition
 //Gp,ction de génération de mot de taille n, calcul taille moyenne
 //Calcul de proba à partir d'un vecteur Ligne dans la classe vecteur Lettre finalment
+*/

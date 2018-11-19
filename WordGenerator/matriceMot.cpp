@@ -1,51 +1,61 @@
 #include "matriceMot.h"
-//#include "vecteurLettre.h"
 #include<string>
 #include<iostream>
 
-
-matriceMot::matriceMot(std::string mot,std::string listeLettreMatrice){
+matriceMot::matriceMot(std::string mot){
 
   this->mot=mot;
-  this->listeLettreMatrice=listeLettreMatrice;
-  this->matriceTransition=new vecteurLettre[this->listeLettreMatrice.length()]();
+  this->ascii = 128;
+  this->matriceTransition=new vecteurLettre[this->ascii]();
 
-  //intitialisation de la matrice, je mets toutes les lettres (elle est carrée)
-  for (int i =0 ; i< this->listeLettreMatrice.length();i++){
-    matriceTransition[i]=vecteurLettre(this->listeLettreMatrice[i],this->listeLettreMatrice);
-  }//Est-ce qu'on fait participer la fin du mot à la matrice de transition ?
+  for (int i =0 ; i< this->ascii;i++){
+    matriceTransition[i]=vecteurLettre(char(i));
+  }
 
-  //Remplissage
-  for(int i=0; i<(mot.length()-1);i++){
+  for (int i=0; i<(mot.length()-1);i++){
   this->incrementerCompteurCase(mot[i],mot[i+1]);
   }
 }
-matriceMot::matriceMot(std::string listeLettreMatrice){
-  this->listeLettreMatrice = listeLettreMatrice;
-  this->matriceTransition=new vecteurLettre[this->listeLettreMatrice.length()]();
-  //intitialisation de la matrice, je mets toutes les lettres (elle est carrée)
-  for (int i =0 ; i< this->listeLettreMatrice.length();i++){
-    matriceTransition[i]=vecteurLettre(this->listeLettreMatrice[i],this->listeLettreMatrice);
-  }//Est-ce qu'on fait participer la fin du mot à la matrice de transition ?
+
+matriceMot::matriceMot(){
+  this->matriceTransition=new vecteurLettre[this->ascii]();
+  for (int i =0 ; i<this->ascii;i++){
+    matriceTransition[i]=vecteurLettre(char(i));
+  }
 
 }
 
-
-std::string matriceMot::getMot(){return(this->mot);}
-
 void matriceMot::incrementerCompteurCase(char lettrePrecedente,char lettreSuivante){
-  for (int i=0;i<this->listeLettreMatrice.length();i++){
-    if (this->listeLettreMatrice[i]==lettrePrecedente){
+  for (int i=0;i<this->ascii;i++){
+    if (char(i)==lettrePrecedente){
       this->matriceTransition[i].incrementerCompteurLettre(lettreSuivante);
     }
   }
 }
+
+std::string matriceMot::getMot(){return(this->mot);}
+
+vecteurLettre matriceMot::getMatriceTransition(char a){return this->matriceTransition[int(a)];}
+
+void matriceMot::afficherMatrice(){
+    
+    std::cout<<"le mot en cours est "<<this->mot<<std::endl;
+    std::cout<<" ";
+    for(int i = 0; i < this->ascii;i++){
+        std::cout<<" "<<char(i);
+    }
+    for(int i = 0; i<this->ascii;i++){
+        this->matriceTransition[i].afficherBis();
+    }
+}
+
+
 void matriceMot::rendreStochastique(){
-for (int i =0;i<this->listeLettreMatrice.length();i++){
+for (int i =0;i<this->ascii;i++){
   this->matriceTransition[i].rendreStochastique();
 }
 }
-
+/*
 matriceMot matriceMot::operator +(matriceMot m){
   //need additionner deux vecteurs lettreSuivante
  matriceMot resultat=matriceMot(m.listeLettreMatrice);
@@ -55,20 +65,6 @@ matriceMot matriceMot::operator +(matriceMot m){
   return (resultat);
 }
 
-std::string matriceMot::getListeLettreMatrice(){return this->listeLettreMatrice;}
-vecteurLettre matriceMot::getMatriceTransition(int i){return this->matriceTransition[i];}
-
-void matriceMot::afficherMatrice(){
-
-std::cout<<"le mot en cours est "<<this->mot<<std::endl;
-std::cout<<" ";
-  for(int i = 0; i < this->listeLettreMatrice.length();i++){
-  std::cout<<" "<<this->listeLettreMatrice[i];
-  }
-  for(int i = 0; i < this->listeLettreMatrice.length();i++){
-  this->matriceTransition[i].afficherBis();
-  }
-}
-
 //faire une fonction qui va prendre une seule fois chaque lettre d'un mot //attributlettremotssansdoublon
 //faire une fonction qui va rechercher une lettre en ligne dans la matrice et incrémenter la lettre encolonne
+*/
