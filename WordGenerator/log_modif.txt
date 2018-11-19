@@ -1,0 +1,3 @@
+modification de la classe vecteurLigne :
+
+Si addition de deux vecteur ligne différents -> devient '?'
