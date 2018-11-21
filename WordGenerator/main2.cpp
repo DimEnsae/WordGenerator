@@ -31,23 +31,23 @@ int main() {
     
     //Comprendre matricMot
     
-    matriceMot m("banane");
-    std::cout << m.getMot() << std::endl;
-    m.getMatriceTransition('b').afficherBis();
-    m.afficherMatrice();
-    matriceMot n("noo");
-    matriceMot q = m+n;
-    q.rendreStochastique();
-    q.afficherMatrice();
+    //matriceMot m("banane");
+    //std::cout << m.getMot() << std::endl;
+    //m.getMatriceTransition('b').afficherBis();
+    //m.afficherMatrice();
+    //matriceMot n("noo");
+    //matriceMot q = m+n;
+    //q.rendreStochastique();
+    //q.afficherMatrice();
     
     
     
     //Comprendre corpus
-    corpus c("./testcorpus.txt");
-    c.afficherMatriceTransition();
+    //corpus c("./testcorpus.txt");
+    //c.afficherMatriceTransition();
     
-    corpus d("../mobydick.txt");
-    d.afficherMatriceTransition();
+    //corpus d("../mobydick.txt");
+    //d.afficherMatriceTransition();
     
     return 0;
 }
