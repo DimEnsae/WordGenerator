@@ -18,6 +18,7 @@ matriceMot::matriceMot(std::string mot){
 }
 
 matriceMot::matriceMot(){
+this->ascii = 128;
   this->matriceTransition=new vecteurLettre[this->ascii]();
   for (int i =0 ; i<this->ascii;i++){
     matriceTransition[i]=vecteurLettre(char(i));
@@ -55,11 +56,11 @@ for (int i =0;i<this->ascii;i++){
   this->matriceTransition[i].rendreStochastique();
 }
 }
-/*
-matriceMot matriceMot::operator +(matriceMot m){
-  //need additionner deux vecteurs lettreSuivante
- matriceMot resultat=matriceMot(m.listeLettreMatrice);
-  for (int i=0;i<this->listeLettreMatrice.length();i++){
+
+matriceMot matriceMot::operator +(matriceMot m){ //attention la variable mot disparait !
+  //need additionner deux vecteurs lettreSuivante doit etre fait avant rendre stochastique ?
+ matriceMot resultat=matriceMot();
+  for (int i=0;i<this->ascii;i++){
     resultat.matriceTransition[i]=this->matriceTransition[i]+m.matriceTransition[i];
   }
   return (resultat);
@@ -67,4 +68,4 @@ matriceMot matriceMot::operator +(matriceMot m){
 
 //faire une fonction qui va prendre une seule fois chaque lettre d'un mot //attributlettremotssansdoublon
 //faire une fonction qui va rechercher une lettre en ligne dans la matrice et incrémenter la lettre encolonne
-*/
+

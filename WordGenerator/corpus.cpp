@@ -5,19 +5,17 @@
 #include "corpus.h"
 
 //initialisation de l'objet matrice de transition en amont
-corpus::corpus(std::string chemin,std::string listeLettre): matriceMotTransition(listeLettre){
-//lire un fichier générer les matrices mots et les additionner dans la foulée
-//générer la matrice de proba
+corpus::corpus(std::string chemin): matriceMotTransition(){
+
 this->cheminFichier=chemin;
 std::ifstream ifs(chemin);
 std::string v;
+
+do {
 ifs>>v;
-while (!ifs.eof()){
- //std::cout<<v;
-matriceMot tmp=matriceMot(v,listeLettre);
+matriceMot tmp=matriceMot(v);
 this->matriceMotTransition=this->matriceMotTransition + tmp;
-ifs>>v;
-}
+} while (!ifs.eof());
 ifs.close();
 
 this->matriceMotTransition.rendreStochastique();

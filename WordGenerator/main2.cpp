@@ -1,5 +1,5 @@
 #include <iostream>
-#include "matriceMot.h"
+#include "corpus.h"
 #include <string>
 #include <fstream>
 
@@ -30,34 +30,24 @@ int main() {
     
     
     //Comprendre matricMot
+    
     matriceMot m("banane");
     std::cout << m.getMot() << std::endl;
     m.getMatriceTransition('b').afficherBis();
     m.afficherMatrice();
-    m.rendreStochastique();
-    m.afficherMatrice();
+    matriceMot n("noo");
+    matriceMot q = m+n;
+    q.rendreStochastique();
+    q.afficherMatrice();
     
-    /*
+    
     
     //Comprendre corpus
-    corpus c("./testcorpus.txt", "abcdefghijklmnopqrstuvwxyz");
+    corpus c("./testcorpus.txt");
     c.afficherMatriceTransition();
     
-    //Essai de creation automatique de listeMot
-    
-    std::ifstream ifs("./testcorpus.txt");
-    std::string x;
-    do {
-        ifs>>x;
-        std::cout<<x<<std::endl;
-        for (int i=0;i<x.length();i++) {std::cout << int(x[i]) << " ";}
-        std::cout << std::endl;
-        
-    } while (!ifs.eof());
-    ifs.close();
-     
-     */
-    
+    corpus d("../mobydick.txt");
+    d.afficherMatriceTransition();
     
     return 0;
 }

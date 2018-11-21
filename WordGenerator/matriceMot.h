@@ -11,7 +11,7 @@ public:
   matriceMot();
   std::string getMot();
   void incrementerCompteurCase(char lettrePrecedente,char lettreSuivante);
-  //matriceMot operator + (matriceMot m);
+  matriceMot operator + (matriceMot m);
   void afficherMatrice();
   void rendreStochastique();
   vecteurLettre getMatriceTransition(char a);
