@@ -4,41 +4,47 @@
 #include <fstream>
 
 int main() {
+    //comprendre la generation de mot
+    //comprendre l'affichage coloree
+    //mot a mot ou caractere par caractere ?
+    //affichage matrice en filtrant sur les nan et non sur un dict
     
     //Comprendre vecteurLigne
     
+    /*
     vecteurLettre v('b');
     std::cout << v.getlettreLigne() << std::endl;
     std::cout << v.getnombreOccurence('d') << std::endl;
     std::cout<< char(125) << std::endl;
     v.incrementerCompteurLettre('c');
     v.incrementerCompteurLettre('d');
-    v.afficherBis();
+    v.afficher();
     vecteurLettre w('d');
     w.incrementerCompteurLettre('e');
     vecteurLettre r = w + v;
-    r.afficherBis();
+    r.afficher();
     r.rendreStochastique();
-    r.afficherBis();
+    r.afficher();
     
     
     vecteurLettre t;
     std::cout << t.getlettreLigne() << std::endl;
-    t.afficherBis();
+    t.afficher();
     t.incrementerCompteurLettre('c');
-    t.afficherBis();
+    t.afficher();
     
     
     //Comprendre matricMot
-    
-    //matriceMot m("banane");
-    //std::cout << m.getMot() << std::endl;
-    //m.getMatriceTransition('b').afficherBis();
+    matriceMot m;
+    m.add_word("banane");
+    m.add_word("bebobnbcb!");
+    m.getMatriceTransition('b').afficher();
     //m.afficherMatrice();
     //matriceMot n("noo");
     //matriceMot q = m+n;
-    //q.rendreStochastique();
-    //q.afficherMatrice();
+    m.rendreStochastique();
+    m.afficherMatrice();
+     */
     
     
     
@@ -46,8 +52,11 @@ int main() {
     //corpus c("./testcorpus.txt");
     //c.afficherMatriceTransition();
     
-    //corpus d("../mobydick.txt");
-    //d.afficherMatriceTransition();
+    //corpus c2("../pokemon_names.txt");
+    //c2.afficherMatriceTransition();
+    
+    corpus d("../mobydick.txt");
+    d.afficherMatriceTransition();
     
     return 0;
 }

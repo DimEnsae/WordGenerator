@@ -14,10 +14,9 @@ public:
   vecteurLettre();
   char getlettreLigne();
   float getnombreOccurence(char a);
-  void afficherBis();
-  vecteurLettre operator + (vecteurLettre v);
+  void afficher(std::string dic);
   void incrementerCompteurLettre(char lettre);
   void rendreStochastique();
-  //char selectionnerLettreSuivante();
+  char selectionnerLettreSuivante();
 
 };

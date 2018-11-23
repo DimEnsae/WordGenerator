@@ -1,13 +1,12 @@
 #include "vecteurLettre.h"
-//#include<stdlib.h>
+#include<stdlib.h>
 #include<time.h>
 #include<string>
 #include<iostream>
-//#include <cstdlib>
-//#include <sys/timeb.h>
-//#include <ctime>
+#include <cstdlib>
+#include <sys/timeb.h>
+#include <ctime>
 
-//Constructeur principal
 vecteurLettre::vecteurLettre(char lettreLigne){
   this->ascii = 128;
   this->lettreLigne=lettreLigne;
@@ -18,7 +17,7 @@ vecteurLettre::vecteurLettre(char lettreLigne){
   }
 }
 
-//Constructeur simplifié
+//Constructeur simplifié //What is the point of using that ?
 vecteurLettre::vecteurLettre(){
   this->ascii = 128;
   this->lettreLigne='0';
@@ -34,34 +33,21 @@ float vecteurLettre::getnombreOccurence(char a){
   return(this->nombreOccurence[int(a)]);
 }
 
-void vecteurLettre::afficherBis(){
+void vecteurLettre::afficher(std::string dic){
     std::cout<<std::endl;
     std::cout<<this->lettreLigne;
     for(int i=0;i<this->ascii;i++){
-        std::cout<<" "<<char(i)<<":"<<this->nombreOccurence[i];
+        if (dic.find(char(i)) != std::string::npos) {
+            std::cout<<" "<<char(i)<<":"<<this->nombreOccurence[i];
+        }
     }
     std::cout<<std::endl;
 }
 
-//Surcharge +
-vecteurLettre vecteurLettre::operator +(vecteurLettre v){
-  vecteurLettre resultat=vecteurLettre(v.lettreLigne);
-  for(int i= 0; i<this->ascii;i++){
-      resultat.nombreOccurence[i]=this->nombreOccurence[i]+v.nombreOccurence[i];
-  }
-    if (this->lettreLigne!=v.lettreLigne) {resultat.lettreLigne='?';}
-        
-  return resultat;
-}
- 
 
 //Augmentation du compteur pour une des lettres suivantes
 void vecteurLettre::incrementerCompteurLettre(char lettre){
-  for(int i=0;i<this->ascii;i++){
-    if(char(i)==lettre){
-    this->nombreOccurence[i]++;
-    }
-  }
+    this->nombreOccurence[int(lettre)]++;
 }
 
 //Normalisation proba
@@ -75,15 +61,14 @@ void vecteurLettre::rendreStochastique(){
   };
 }
 
-
-/*
+//Explication Clement ???
 //Sélection de la lettre suivante étant donné le vecteur de proba d'inclusion
 char vecteurLettre::selectionnerLettreSuivante(){
     //1 calcul des probabilités cumulées
     float *cumprob=0;
-    cumprob=new float[this->listeLettre.length()];
+    cumprob=new float[this->ascii];
     cumprob[0]=this->nombreOccurence[0];
-    for(int i=1; i<this->listeLettre.length();i++){
+    for(int i=1; i<this->ascii;i++){
         cumprob[i]=cumprob[i-1]+this->nombreOccurence[i];
     }
     //génération d'un nombre aléatoire entre 0 et 1
@@ -102,7 +87,7 @@ char vecteurLettre::selectionnerLettreSuivante(){
     int choix;
     if(u<=cumprob[0]){choix=0;}
     //std::cout<<u;
-    for(int i=1;i<this->listeLettre.length();i++){
+    for(int i=1;i<this->ascii;i++){
         if((u>cumprob[i-1])&&(u<=cumprob[i])) {choix=i;}
     }
     return(this->nomsColonnes[choix]);

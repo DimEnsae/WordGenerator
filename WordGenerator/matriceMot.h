@@ -7,12 +7,10 @@ private:
   vecteurLettre *matriceTransition;
   int ascii;
 public:
-  matriceMot(std::string mot);
   matriceMot();
-  std::string getMot();
+  void add_word(std:: string mot);
   void incrementerCompteurCase(char lettrePrecedente,char lettreSuivante);
-  matriceMot operator + (matriceMot m);
-  void afficherMatrice();
+    void afficherMatrice(std::string dic);
   void rendreStochastique();
   vecteurLettre getMatriceTransition(char a);
 };
