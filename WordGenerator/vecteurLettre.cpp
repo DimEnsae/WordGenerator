@@ -90,6 +90,6 @@ char vecteurLettre::selectionnerLettreSuivante(){
     for(int i=1;i<this->ascii;i++){
         if((u>cumprob[i-1])&&(u<=cumprob[i])) {choix=i;}
     }
-    return(this->nomsColonnes[choix]);
+    return(char(choix));
 }
-*/
+

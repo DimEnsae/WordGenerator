@@ -4,11 +4,6 @@
 #include <fstream>
 
 int main() {
-    //comprendre la generation de mot
-    //comprendre l'affichage coloree
-    //mot a mot ou caractere par caractere ?
-    //affichage matrice en filtrant sur les nan et non sur un dict
-    
     //Comprendre vecteurLigne
     
     /*
@@ -52,11 +47,15 @@ int main() {
     //corpus c("./testcorpus.txt");
     //c.afficherMatriceTransition();
     
-    //corpus c2("../pokemon_names.txt");
-    //c2.afficherMatriceTransition();
+    corpus c2("../pokemon_names.txt");
+    c2.afficherMatriceTransition();
+    c2.genererUnMot('a',7);
+    std::cout << std::endl;
+    c2.genererUnMot('d',9);
+    std::cout << std::endl;
     
-    corpus d("../mobydick.txt");
-    d.afficherMatriceTransition();
+    //corpus d("../mobydick.txt");
+    //d.afficherMatriceTransition();
     
     return 0;
 }
