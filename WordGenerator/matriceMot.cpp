@@ -1,14 +1,15 @@
+
 #include "matriceMot.h"
 #include<string>
 #include<iostream>
 
 matriceMot::matriceMot(){
 this->ascii = 128;
-    //this->matriceTransition=new vecteurLettre[this->ascii]();
-    //for (int i =0 ; i<this->ascii;i++){
-    //  matriceTransition[i]=vecteurLettre(char(i));
-    //}
-    int this->matriceTransition[128][128]
+    this->matriceTransition=new vecteurLettre[this->ascii]();
+    for (int i =0 ; i<this->ascii;i++){
+      matriceTransition[i]=vecteurLettre(char(i));
+    }
+    //int this->matriceTransition[128][128]
 }
 
 void matriceMot::add_word(std::string mot) {

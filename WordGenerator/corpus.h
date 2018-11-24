@@ -16,6 +16,6 @@ class corpus{
   public :
   corpus(std::string cheminFichier);
   void afficherMatriceTransition();
-  //void afficherMatriceTransitionColoree();
+  void afficherMatriceTransitionColoree();
   void genererUnMot(char lettreInitiale,int tailleMot);
 };

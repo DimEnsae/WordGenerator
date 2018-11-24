@@ -44,15 +44,25 @@ int main() {
     
     
     //Comprendre corpus
-    //corpus c("./testcorpus.txt");
-    //c.afficherMatriceTransition();
+    corpus c("./testcorpus.txt");
+    c.afficherMatriceTransition();
     
+    /*
     corpus c2("../data/NewFR.txt");
     c2.afficherMatriceTransition();
     c2.genererUnMot('a',7);
     std::cout << std::endl;
     c2.genererUnMot('d',9);
+    std::cout << std::endl;*/
+     
+    /*
+    corpus c2("../german_words.txt");
+    c2.afficherMatriceTransition();
+    c2.genererUnMot('a',7);
     std::cout << std::endl;
+    c2.genererUnMot('d',9);
+    std::cout << std::endl;
+    std::cout << char(66) << std::endl;*/
     
     //corpus d("../mobydick.txt");
     //d.afficherMatriceTransition();
