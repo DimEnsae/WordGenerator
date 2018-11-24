@@ -47,7 +47,7 @@ int main() {
     //corpus c("./testcorpus.txt");
     //c.afficherMatriceTransition();
     
-    corpus c2("../pokemon_names.txt");
+    corpus c2("../data/NewFR.txt");
     c2.afficherMatriceTransition();
     c2.genererUnMot('a',7);
     std::cout << std::endl;

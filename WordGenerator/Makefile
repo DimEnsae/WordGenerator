@@ -1,5 +1,5 @@
 #Pour le partage de fichier ne pas oublier de mettre sudo pour etre le root mount -t vboxsf Partage_virtual_box ~/Desktop/Partage
-exe: main.cpp vecteurLettre.h vecteurLettre.cpp matriceMot.h matriceMot.cpp corpus.h corpus.cpp
+exe: main2.cpp vecteurLettre.h vecteurLettre.cpp matriceMot.h matriceMot.cpp corpus.h corpus.cpp
 	g++ -o main2 main2.cpp vecteurLettre.cpp matriceMot.cpp corpus.cpp 
 
 #~/.local/bin/jupyter-notebook
