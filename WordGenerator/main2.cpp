@@ -1,5 +1,6 @@
 #include <iostream>
-#include "corpus.h"
+//#include "corpus.h"
+#include "tensorMot.h"
 #include <string>
 #include <fstream>
 
@@ -44,16 +45,18 @@ int main() {
     
     
     //Comprendre corpus
-    corpus c("./testcorpus.txt");
-    c.afficherMatriceTransition();
+    //corpus c("./testcorpus.txt");
+    //c.afficherMatriceTransition();
     
     /*
     corpus c2("../data/NewFR.txt");
     c2.afficherMatriceTransition();
+    for (int i =0; i<20; i++) {
     c2.genererUnMot('a',7);
     std::cout << std::endl;
-    c2.genererUnMot('d',9);
-    std::cout << std::endl;*/
+    std::cout << std::endl;
+    }
+     */
      
     /*
     corpus c2("../german_words.txt");
@@ -66,6 +69,14 @@ int main() {
     
     //corpus d("../mobydick.txt");
     //d.afficherMatriceTransition();
+    
+    //Tensor of dimension 3 (2 order markov chain)
+    tensorMot T;
+    T.add_word("baabcceggrbbbcca");
+    T.rendreStochastique();
+    T.afficherTensor("abc");
+    
+    
     
     return 0;
 }

@@ -2,94 +2,42 @@
 #include<string>
 #include <fstream>
 #include "corpus.h"
-#include <algorithm>
-#include <SFML/Graphics.hpp>
+#include <algorithm> //load std::transform
 
+//Constructor
 corpus::corpus(std::string chemin){
 
-this->cheminFichier=chemin;
-this->matriceMotTransition= matriceMot();
-std::ifstream ifs(chemin);
-std::string v;
+    this->cheminFichier=chemin;
+    this->matriceMotTransition = matriceMot();
+    
+    std::ifstream ifs(chemin);
+    std::string v;
+    do {
+    ifs>>v;
+    std::transform(v.begin(), v.end(), v.begin(), ::tolower); //Change v to lower mode (no capitalize letters)
+    matriceMotTransition.add_word(v);
+    } while (!ifs.eof());
+    ifs.close();
 
-do {
-ifs>>v;
-std::transform(v.begin(), v.end(), v.begin(), ::tolower);
-matriceMotTransition.add_word(v);
-} while (!ifs.eof());
-ifs.close();
-
-this->matriceMotTransition.rendreStochastique();
+    this->matriceMotTransition.rendreStochastique();
 }
 
+
+//Display
 void corpus::afficherMatriceTransition(){
     this->matriceMotTransition.afficherMatrice("abcdefghijklmnoppqrstuvwxyz");
 }
 
 
 void corpus::genererUnMot(char lettreInitiale, int tailleMot){
-//Etape 1 recherche de la ligne de la matrice de transition considérée
-vecteurLettre v;
-v=this->matriceMotTransition.getMatriceTransition(lettreInitiale);
-if(tailleMot==1) {
-    std::cout<<lettreInitiale;
-    }
-else {
-    std::cout<<lettreInitiale;
-    char lettreSuivante=v.selectionnerLettreSuivante();
-    genererUnMot(lettreSuivante,(tailleMot-1));
-    }
-}
-
-
-
-
-void corpus::afficherMatriceTransitionColoree(){
-    sf::RenderWindow window(sf::VideoMode(300, 300), "Matrice de Transition !");
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
+    vecteurLettre v;
+    v=this->matriceMotTransition.getMatriceTransition(lettreInitiale);
+    if(tailleMot==1) {
+        std::cout<<lettreInitiale;
         }
-        window.clear();
-        //Je vais balayer la matrice  de transition et colorer en conséquence
-        sf::Font font;
-        font.loadFromFile("../OpenSans-BoldItalic.ttf");
-        
-        //je mets les entêtes en ligne et en colonne
-        
-        
-        for(int i=0;i<26;i++){
-            
-            sf::Text lettre;
-            lettre.setFont(font);
-            lettre.setString("abcdefghijklmnopqrstuvwxyz"[i]);
-            lettre.setPosition(25+i*10,10);
-            lettre.setFillColor(sf::Color::Red);
-            lettre.setCharacterSize(10);
-            window.draw(lettre);
-            
-            //les lettres en lignes
-            sf:: Text lettre2=lettre;
-            lettre2.setPosition(15,23+i*10);
-            window.draw(lettre2);
+    else {
+        std::cout<<lettreInitiale;
+        char lettreSuivante=v.selectionnerLettreSuivante();
+        genererUnMot(lettreSuivante,(tailleMot-1));
         }
-        
-        for (int j=0; j<26; j++){
-            for(int i=0; i<26;i++){
-                // je récupère la proba d'une case et dessine la couleur associée
-                float probaCase =  this->matriceMotTransition.getMatriceTransition(j).getnombreOccurence(i);
-                sf::RectangleShape rectangle(sf::Vector2f(9.f,9.f));
-                rectangle.setFillColor(sf::Color(250*probaCase,0,0));
-                rectangle.setPosition(23+10*i,23+10*j);
-                rectangle.setOutlineThickness(1.f);
-                rectangle.setOutlineColor(sf::Color(250,150,100));
-                window.draw(rectangle);
-            }
-        }
-        window.display();
-    }
 }
