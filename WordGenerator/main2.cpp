@@ -1,46 +1,40 @@
 #include <iostream>
-//#include "corpus.h"
-#include "tensorMot.h"
+#include "corpus.h"
 #include <string>
 #include <fstream>
 
+//surcharge << ?
+//generate words clean up and generalize to tensor
+//Creer des helpers functions pour generer des mots
+
 int main() {
-    //Comprendre vecteurLigne
     
-    /*
-    vecteurLettre v('b');
-    std::cout << v.getlettreLigne() << std::endl;
-    std::cout << v.getnombreOccurence('d') << std::endl;
-    std::cout<< char(125) << std::endl;
+    //vecteurTransition
+    vecteurTransition v;
+    std::cout << v['d'] << std::endl;
     v.incrementerCompteurLettre('c');
     v.incrementerCompteurLettre('d');
     v.afficher();
-    vecteurLettre w('d');
-    w.incrementerCompteurLettre('e');
-    vecteurLettre r = w + v;
-    r.afficher();
-    r.rendreStochastique();
-    r.afficher();
+    v.rendreStochastique();
+    std::cout << v[int('d')] << std::endl;
+    v.afficher();
     
-    
-    vecteurLettre t;
-    std::cout << t.getlettreLigne() << std::endl;
-    t.afficher();
-    t.incrementerCompteurLettre('c');
-    t.afficher();
-    
-    
-    //Comprendre matricMot
+    //matricMot (1 order markov chain)
     matriceMot m;
     m.add_word("banane");
     m.add_word("bebobnbcb!");
-    m.getMatriceTransition('b').afficher();
-    //m.afficherMatrice();
-    //matriceMot n("noo");
-    //matriceMot q = m+n;
+    m['b'].afficher();
+    std::cout << "NEW LINE" << std::endl;
     m.rendreStochastique();
     m.afficherMatrice();
-     */
+    
+    //Tensor of dimension 3 (2 order markov chain)
+    std::cout << "TENSOR MOT" << std::endl;
+    tensorMot T;
+    T.add_word("baabcceggrbbbccabce");
+    T.rendreStochastique();
+    T['b']['c'].afficher();
+    std::cout << T['b']['c']['e'] << std::endl;
     
     
     
@@ -48,15 +42,23 @@ int main() {
     //corpus c("./testcorpus.txt");
     //c.afficherMatriceTransition();
     
-    /*
-    corpus c2("../data/NewFR.txt");
+    
+    corpus c2("../data/NewEN.txt");
     c2.afficherMatriceTransition();
-    for (int i =0; i<20; i++) {
-    c2.genererUnMot('a',7);
+    std::cout << "ORDRE 1" << std::endl;
+    for (int i =0; i<8; i++) {
+    c2.genererUnMotOrdre1('r',8);
     std::cout << std::endl;
     std::cout << std::endl;
     }
-     */
+    
+    std::cout << "ORDRE 2" << std::endl;
+    for (int i =0; i<8; i++) {
+        c2.genererUnMotOrdre2('r','e',8);
+        std::cout << std::endl;
+        std::cout << std::endl;
+    }
+    
      
     /*
     corpus c2("../german_words.txt");
@@ -69,14 +71,6 @@ int main() {
     
     //corpus d("../mobydick.txt");
     //d.afficherMatriceTransition();
-    
-    //Tensor of dimension 3 (2 order markov chain)
-    tensorMot T;
-    T.add_word("baabcceggrbbbcca");
-    T.rendreStochastique();
-    T.afficherTensor("abc");
-    
-    
     
     return 0;
 }

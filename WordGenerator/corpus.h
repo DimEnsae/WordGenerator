@@ -1,5 +1,5 @@
 #include<string>
-#include "matriceMot.h"
+#include "tensorMot.h"
 
 /*---------------------------------------------------------------------------------
  
@@ -13,10 +13,12 @@ class corpus{
 private:
     
     std::string cheminFichier;
-    matriceMot matriceMotTransition;
+    matriceMot TransitionOrder1;
+    tensorMot TransitionOrder2;
 
 public:
     corpus(std::string cheminFichier);
     void afficherMatriceTransition();
-    void genererUnMot(char lettreInitiale,int tailleMot);
+    void genererUnMotOrdre1(char lettreInit,int tailleMot);
+    void genererUnMotOrdre2(char lettreInit1, char lettreInit2, int tailleMot);
 };

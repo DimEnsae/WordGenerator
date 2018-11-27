@@ -7,14 +7,15 @@
 //Constructor
 matriceMot::matriceMot(){
     this->ascii = 128;
-    this->matriceTransition=new vecteurLettre[this->ascii]();
+    this->matriceTransition=new vecteurTransition[this->ascii]();
     for (int i =0 ; i<this->ascii;i++){
-      matriceTransition[i]=vecteurLettre(char(i));
+      matriceTransition[i]=vecteurTransition();
     }
 }
 
-//Getter
-vecteurLettre matriceMot::getMatriceTransition(char a){return this->matriceTransition[int(a)];}
+//Overload []
+vecteurTransition& matriceMot::operator[] (const int index) {return this->matriceTransition[index];}
+vecteurTransition& matriceMot::operator[] (const char index) {return this->matriceTransition[int(index)];}
 
 //Display
 void matriceMot::afficherMatrice(std::string dic){

@@ -1,18 +1,17 @@
-#include "vecteurLettre.h"
-#include<stdlib.h> //?
-#include<time.h> //?
+#include "vecteurTransition.h"
 #include<string>
 #include<iostream>
+#include <iomanip> //For cout manipulations
 #include <cstdlib> //?
 #include <sys/timeb.h> //?
 #include <ctime> //?
-#include <iomanip> //For cout manipulations
+#include<stdlib.h> //?
+#include<time.h> //?
 
-//Constructors ------------------------------------------------
+//Constructors --------------------------------------------------
 
-vecteurLettre::vecteurLettre(char lettre){
+vecteurTransition::vecteurTransition(){
     this->ascii = 128;
-    this->lettre=lettre;
     this->nombreOccurence=new float[this->ascii];
     //Init occurences to 0
     for(int i=0;i<this->ascii;i++){
@@ -20,29 +19,15 @@ vecteurLettre::vecteurLettre(char lettre){
     }
 }
 
-vecteurLettre::vecteurLettre(){
-    this->ascii = 128;
-    this->lettre='*';
-    this->nombreOccurence=new float[this->ascii];
-}
 
-
-//Getter -----------------------------------------------------
-
-char vecteurLettre::getlettre(){
-    return(this->lettre);
-}
-
-float vecteurLettre::getnombreOccurence(char a){
-    return(this->nombreOccurence[int(a)]);
-}
-
+//Overload []-----------------------------------------------------
+float& vecteurTransition::operator[] (const int index) {return this->nombreOccurence[index];}
+float& vecteurTransition::operator[] (const char index) {return this->nombreOccurence[int(index)];}
 
 //----------------------------------------------------------------
 
-void vecteurLettre::afficher(std::string dic){
+void vecteurTransition::afficher(std::string dic){
     std::cout<<std::endl;
-    std::cout<<this->lettre;
     for(int i=0;i<this->ascii;i++){
         //Only displays characters contained in dic
         if (dic.find(char(i)) != std::string::npos) {
@@ -55,11 +40,11 @@ void vecteurLettre::afficher(std::string dic){
 }
 
 
-void vecteurLettre::incrementerCompteurLettre(char lettre){
+void vecteurTransition::incrementerCompteurLettre(char lettre){
     this->nombreOccurence[int(lettre)]++;
 }
 
-void vecteurLettre::rendreStochastique(){
+void vecteurTransition::rendreStochastique(){
     int total=0;
     for (int i=0;i<this->ascii;i++) {
     total=total+this->nombreOccurence[i];
@@ -77,7 +62,7 @@ void vecteurLettre::rendreStochastique(){
 
 
 //Sélection de la lettre suivante étant donné le vecteur de proba d'inclusion
-char vecteurLettre::selectionnerLettreSuivante(){
+char vecteurTransition::selectionnerLettreSuivante(){
     //1 calcul des probabilités cumulées
     float *cumprob=0;
     cumprob=new float[this->ascii];

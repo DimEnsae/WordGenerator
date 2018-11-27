@@ -12,6 +12,7 @@ tensorMot::tensorMot(){
     }
 }
 
+/*
 //Display (short version)
 void tensorMot::afficherTensor(std::string dic){
     for(int i = 0; i<this->ascii;i++){
@@ -20,7 +21,11 @@ void tensorMot::afficherTensor(std::string dic){
             this->tensorTransition[i].afficherMatrice(dic);
         }
     }
-}
+}*/
+
+//Overload []
+matriceMot& tensorMot::operator[] (const int index) {return this->tensorTransition[index];}
+matriceMot& tensorMot::operator[] (const char index) {return this->tensorTransition[int(index)];}
 
 
 //Integrate a new word into the tensor
@@ -34,14 +39,14 @@ void tensorMot::add_word(std::string mot) {
 
 
 void tensorMot::incrementerCompteurCase(char lettrePrec1, char lettrePrec2,char lettreSuiv){
-    this->tensorTransition[int(lettrePrec1)].getMatriceTransition(lettrePrec2).incrementerCompteurLettre(lettreSuiv);
+    this->tensorTransition[int(lettrePrec1)][lettrePrec2].incrementerCompteurLettre(lettreSuiv);
 }
 
 
 void tensorMot::rendreStochastique(){
     for (int i =0;i<this->ascii;i++){
         for (int j=0;j<this->ascii;j++){
-            this->tensorTransition[i].getMatriceTransition(char(j)).rendreStochastique();
+            this->tensorTransition[i][j].rendreStochastique();
         }
     }
 }
