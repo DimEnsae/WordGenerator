@@ -2,6 +2,7 @@
 #include<string>
 #include <fstream>
 #include "corpus.h"
+#include "misc.h"
 #include <algorithm> //load std::transform
 
 //Constructor
@@ -35,11 +36,10 @@ void corpus::afficherMatriceTransition(){
 
 
 void corpus::genererUnMotOrdre1(char lettreInit, int tailleMot){
+    
     vecteurTransition v;
     v=this->TransitionOrder1[lettreInit];
-    if(tailleMot==1) {
-        std::cout<<lettreInit;
-        }
+    if(tailleMot==1) {std::cout<<lettreInit;}
     else {
         std::cout<<lettreInit;
         char lettreSuivante=v.selectionnerLettreSuivante();
@@ -47,8 +47,21 @@ void corpus::genererUnMotOrdre1(char lettreInit, int tailleMot){
         }
 }
 
-void corpus::genererUnMotOrdre2(char lettreInit1, char lettreInit2, int tailleMot){
+void corpus::genererUnMotOrdre1Bis(int tailleMot, int nbmots){
+    //Pas besoin de generer la 1ere lettre, elle est generee aleatoirement
+    //genere nbmots mots
     
+    for (int j=0; j<nbmots; j++) {
+        
+        char lettreInit = firstLetter();
+        genererUnMotOrdre1(lettreInit, tailleMot);
+        std::cout << std::endl;
+        
+    }
+}
+
+void corpus::genererUnMotOrdre2(char lettreInit1, char lettreInit2, int tailleMot){
+    //A l'ordre 2 ont doit preciser les deux premieres lettres
     vecteurTransition v;
     v=this->TransitionOrder2[lettreInit1][lettreInit2];
     
@@ -59,6 +72,19 @@ void corpus::genererUnMotOrdre2(char lettreInit1, char lettreInit2, int tailleMo
         std::cout<<lettreInit1;
         char lettreSuivante=v.selectionnerLettreSuivante();
         genererUnMotOrdre2(lettreInit2, lettreSuivante,(tailleMot-1));
+    }
+}
+
+void corpus::genererUnMotOrdre2Bis(int tailleMot, int nbmots){
+    //Les deux premieres lettres sont generees aleatoirement
+    //genere nbmots mots
+    
+    for (int j=0; j<nbmots; j++) {
+    
+        char lettreInit1 = firstLetter();
+        char lettreInit2 = this->TransitionOrder1[lettreInit1].selectionnerLettreSuivante();
+        genererUnMotOrdre2(lettreInit1, lettreInit2,tailleMot);
+        std::cout << std::endl;
     }
 }
 

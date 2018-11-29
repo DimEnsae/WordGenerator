@@ -38,11 +38,12 @@ public:
     //Overload []
     float& operator[] (const int index);
     float& operator[] (const char index);
+    //float& operator[] (const int ind1, const int ind2);
 
     //Methods
     void afficher(std::string dic="abcdefghijklmnopqrstuvwxyz"); //A ameliorer surcharge <<
     void incrementerCompteurLettre(char lettre);
     void rendreStochastique();
-    char selectionnerLettreSuivante(); //A voir avec clement
+    char selectionnerLettreSuivante();
 
 };

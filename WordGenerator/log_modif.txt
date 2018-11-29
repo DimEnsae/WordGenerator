@@ -1,15 +1,5 @@
-modification de la classe vecteurLigne :
-
-Si addition de deux vecteur ligne différents -> devient '?'
-
-
-
-
 Amelioration à effectuer : 
 
--ordre chaine de markov > 1
 -comprendre l'affichage coloree
 -mot a mot ou caractere par caractere ?
 -affichage matrice en filtrant sur les nan et non sur un dict
-
-Créer des accepteur []

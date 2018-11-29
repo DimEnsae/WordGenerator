@@ -16,6 +16,7 @@ matriceMot::matriceMot(){
 //Overload []
 vecteurTransition& matriceMot::operator[] (const int index) {return this->matriceTransition[index];}
 vecteurTransition& matriceMot::operator[] (const char index) {return this->matriceTransition[int(index)];}
+//float& matriceMot::operator[] (const int ind1, const int ind2) {return this->matriceTransition[ind1][ind2];}
 
 //Display
 void matriceMot::afficherMatrice(std::string dic){

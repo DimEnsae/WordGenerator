@@ -20,5 +20,7 @@ public:
     corpus(std::string cheminFichier);
     void afficherMatriceTransition();
     void genererUnMotOrdre1(char lettreInit,int tailleMot);
+    void genererUnMotOrdre1Bis(int tailleMot, int nbmot=1);
     void genererUnMotOrdre2(char lettreInit1, char lettreInit2, int tailleMot);
+    void genererUnMotOrdre2Bis(int tailleMot, int nbmot=1);
 };
