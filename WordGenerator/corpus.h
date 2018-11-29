@@ -1,3 +1,6 @@
+#ifndef CORPUS_H
+#define CORPUS_H
+
 #include<string>
 #include "tensorMot.h"
 
@@ -24,3 +27,5 @@ public:
     void genererUnMotOrdre2(char lettreInit1, char lettreInit2, int tailleMot);
     void genererUnMotOrdre2Bis(int tailleMot, int nbmot=1);
 };
+
+#endif

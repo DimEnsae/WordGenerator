@@ -1,3 +1,6 @@
+#ifndef MATRICEMOT_H
+#define MATRICEMOT_H
+
 #include<string>
 #include "vecteurTransition.h"
 
@@ -31,3 +34,5 @@ public:
     void incrementerCompteurCase(char lettrePrecedente,char lettreSuivante);
     void rendreStochastique();
 };
+
+#endif

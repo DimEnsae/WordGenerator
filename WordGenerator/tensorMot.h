@@ -1,3 +1,6 @@
+#ifndef TENSORMOT_H
+#define TENSORMOT_H
+
 #include<string>
 #include "matriceMot.h"
 
@@ -30,3 +33,5 @@ public:
     void incrementerCompteurCase(char lettrePrec1, char lettrePrec2,char lettreSuiv);
     void rendreStochastique();
 };
+
+#endif

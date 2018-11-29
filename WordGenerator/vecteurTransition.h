@@ -1,3 +1,6 @@
+#ifndef VECTEURTRANSITION_H
+#define VECTEURTRANSITION_H
+
 #include<string>
 
 /*---------------------------------------------------------------------------------------------
@@ -47,3 +50,6 @@ public:
     char selectionnerLettreSuivante();
 
 };
+
+
+#endif
