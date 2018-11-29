@@ -88,3 +88,22 @@ void corpus::genererUnMotOrdre2Bis(int tailleMot, int nbmots){
     }
 }
 
+void corpus::exportMatriceTocsv(std:: string PATH) {
+    
+    std::ofstream monFlux(PATH);
+    
+    if(monFlux) {
+        for (int i=0; i<128; i++) {
+            for (int j=0; j<128; j++) {
+                monFlux << this->TransitionOrder1[i][j];
+                if (j<127) {monFlux << ";";}
+            }
+            if (i<127) {monFlux << "\n";}
+            
+        }
+    }
+    else {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
+    }
+}
+

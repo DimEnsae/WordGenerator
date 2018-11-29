@@ -9,6 +9,7 @@ int main() {
     std::cout << std::endl;
     std::cout << "Generation a l'ordre 2" << std::endl << std::endl;
     c.genererUnMotOrdre2Bis(9,12);
+    c.exportMatriceTocsv("./Mat.txt");
     
     return 0;
 }

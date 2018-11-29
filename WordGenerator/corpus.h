@@ -26,6 +26,7 @@ public:
     void genererUnMotOrdre1Bis(int tailleMot, int nbmot=1);
     void genererUnMotOrdre2(char lettreInit1, char lettreInit2, int tailleMot);
     void genererUnMotOrdre2Bis(int tailleMot, int nbmot=1);
+    void exportMatriceTocsv(std:: string PATH);
 };
 
 #endif
