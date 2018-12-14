@@ -95,7 +95,7 @@ corpus_test2.afficherMatriceTransitionColoree();
 //}
 
 //corpus_test2.genererUnMot('s',7);
-//corpus_test3.genererUnMot('s',7);
+//corpus_test3.genererUnMot('s',7);lkjlkjlkjlkj
 
     
 std::string path = "../pokemon_names.txt";
