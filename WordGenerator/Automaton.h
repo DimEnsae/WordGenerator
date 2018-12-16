@@ -9,6 +9,8 @@ private:
     int memoryLength; //memory of the Automaton
     std::map<int,Node> mapNode;//the nodes
 public:
-    Automaton(std::string path);
-    void fill(std::string word); //on généralisera aux mots plus tard
+    Automaton(std::string path, int memoryLength);
+    void learnFromWord(std::string word); //on généralisera aux mots plus tard
+    void add_map(int idNode, Node node);
+    void display();
 };
