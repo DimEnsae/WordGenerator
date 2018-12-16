@@ -1,6 +1,6 @@
 #include <string>
-#include "Vertex.h"
 #include <map>
+#include "Vertex.h"
 
 class Node{
 private:
@@ -9,10 +9,9 @@ private:
     std::map<std::string, Vertex> mapVertex;//following nodes
 public:
     Node(std::string name, int intNode);
-    void add_map(std::string next , Vertex v);
-    
-    
-    
+    void add_map(std::string next , Vertex v);// to add a Vertex
+    void displayNode();
+    void increment(int numVertex)
+
+
 };
-
-
