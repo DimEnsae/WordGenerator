@@ -23,7 +23,7 @@ std::map<char , Vertex> Node::getMap(){
 void Node::display(){
     for(std::map<char , Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
     std::cout<< "\t" << it->first<<"=>";
-    it->second.display();              
+    it->second.display();
   }
 }
 
@@ -31,6 +31,31 @@ void Node::display(){
 this->mapVertex.find(NextLetter)->second.increment(); //second récupère l'élément après la clé
 }
 
+
+
+std::string Node::select_node_suivant(){
+
+  std::string nodeSuivant;
+  std::map<std::string,int> weightCumule;
+  int cumul=0;
+  for(std::map<char , Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
+
+   cumul=cumul+it->second.getWeight();
+   weightCumule.insert(std::pair<std::string,int>(it->second.getNextNode(),cumul));
+   }
+  srand(clock());
+  float u=(rand()%99999/99999.0)*cumul; //génération de u entre 0 et max cumulé
+
+  for(std::map<std::string , int>::iterator it=weightCumule.begin(); it!=weightCumule.end();it++){
+
+   if(u<=it->second){
+   nodeSuivant=it->first;
+   break;
+   }
+
+  }
+  return(nodeSuivant);
+}
 
 //------------------------------------------------------------------------------------------
 //std::map<std::string, Vertex>::iterator it =this->mapVertex.begin();// initialisation de l'itérator en dehors de la boucle, ca ne devrait par marcher a l'interieur de la boucle ?

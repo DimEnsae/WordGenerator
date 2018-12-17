@@ -12,4 +12,5 @@ public:
     void add_map(char next , Vertex v);//add Vertex
     void display();
     void increment(char NextLetter);
+    std::string select_node_suivant();
 };

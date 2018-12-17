@@ -11,10 +11,6 @@ Vertex::Vertex(std::string nextNode, float weight){
 void Vertex::increment() {this->weight++;}
 
 void Vertex::display() {std::cout << "(" << this->nextNode << "," << this->weight << ")" << std::endl;}
+float Vertex::getWeight(){return(this->weight);}
 
-
-
-
-
-
-
+std::string Vertex::getNextNode(){return(this->nextNode);}
