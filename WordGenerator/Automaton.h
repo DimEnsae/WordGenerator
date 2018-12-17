@@ -6,7 +6,7 @@
 
 class Automaton{
 private:
-    int memoryLength; //memory of the Automaton
+    int memoryLength; //memory of the Automaton 
     std::map<int,Node> mapNode;//the nodes
 public:
     Automaton(std::string path, int memoryLength);

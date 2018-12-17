@@ -2,12 +2,6 @@
 #include "Node.h"
 #include <map>
 
-/*
-Node::Node(std::string name, int intNode):mapVertex(<std::string, Vertex>){
-    this->name = name;
-    this-> intNode = intNode;
-}
-*/
 int Node::NodeCount=0;
 
 Node::Node(std::string name, int intNode){
@@ -21,19 +15,32 @@ Node::Node(std::string name, int intNode){
 
  void Node::add_map(std::string next , Vertex v){
      this->mapVertex.insert(std::pair<std::string,Vertex>(next,v));
- //this->mapVertex[next] =  v;
+     //this->mapVertex[next] =  v; Why does this not work ?
+     //Should we perform a test of key existance ?
  }
 
 void Node::display(){
-
-std::map<std::string, Vertex>::iterator it =this->mapVertex.begin();// initialisation de l'itérator en dehors de la boucle
-  for(it=this->mapVertex.begin();it!=this->mapVertex.end();it++){
-  std::cout<<it->first<<"=>";
-  it->second.display();//surcharger par la suite
-  std::cout<<std::endl;
+    
+    std::cout << "Node : (" << this->intNode << "," << this->name << ")" << std::endl;
+    
+    for(std::map<std::string, Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
+    std::cout<< "\t" << it->first<<"=>";
+    it->second.display();               //surcharger par la suite, ?????
   }
 }
 
  void Node::increment(std::string followingNode){
 this->mapVertex.find(followingNode)->second.increment(); //second récupère l'élément après la clé
 }
+
+
+//------------------------------------------------------------------------------------------
+//std::map<std::string, Vertex>::iterator it =this->mapVertex.begin();// initialisation de l'itérator en dehors de la boucle, ca ne devrait par marcher a l'interieur de la boucle ?
+
+
+/*
+ Node::Node(std::string name, int intNode):mapVertex(<std::string, Vertex>){
+ this->name = name;
+ this-> intNode = intNode;
+ }
+ */
