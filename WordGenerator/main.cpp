@@ -13,7 +13,7 @@
 */
 
 int main(){
-    std::cout << "coucou" << std::endl;
+  //  std::cout << "coucou" << std::endl;
 
     /*
     //Vertex
@@ -37,17 +37,35 @@ int main(){
 
   /*  std::cout << std::endl;*/
 
-    Automaton a("blabla", 2);
-     a.learnFromWord("banane");
+     Automaton b("../mobydick.txt", 3);
+  //  Automaton b("../german_words.txt", 2);
+     /*a.learnFromWord("banane");
      a.learnFromWord("concombre")  ;
      a.learnFromWord("champagne");
-    a.learnFromWord("deco");
-    a.display();//
-
+    a.learnFromWord("deco");*/
+    //a.display();//
+// for (int i=0;i++;i<28){
+/*    a.generate_word("#");
     a.generate_word("#");
-    /*Node n;
-    n.add_map('a', Vertex("ba",90));
-    n.add_map('c', Vertex("ca",10));*/
+    a.generate_word("#");
+    a.generate_word("#");
+    a.generate_word("#");
+    a.generate_word("#");
+    a.generate_word("#");
+    a.generate_word("#");*/
+
+    b.generate_word("#");
+    b.generate_word("#");
+    b.generate_word("#");
+    b.generate_word("#");
+    b.generate_word("#");
+    b.generate_word("#");
+    b.generate_word("#");
+    b.generate_word("#");
+  //}/*Node n;
+  //  n.add_map('a', Vertex("ba",90));
+
+  //  n.add_map('c', Vertex("ca",10));*/
     //a.add_map("ee", n);
     //a.display();
    //std::cout <<n.select_node_suivant() <<std::endl;

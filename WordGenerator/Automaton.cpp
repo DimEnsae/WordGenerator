@@ -3,7 +3,7 @@
 #include <map>
 #include <sys/timeb.h>
 #include <ctime>
-
+#include <fstream>
 
 Automaton::Automaton(std::string path, int memoryLength){
     std::map<std::string , Node> mp;
@@ -13,6 +13,19 @@ Automaton::Automaton(std::string path, int memoryLength){
     Node n2;
     this->add_map("#", n1);
     this->add_map("$", n2);
+
+
+
+    std::ifstream ifs(path);
+    std::string v;
+    ifs>>v;
+    while (!ifs.eof()){
+     //std::cout<<v;
+    this->learnFromWord(v);
+    ifs>>v;
+    }
+    ifs.close();
+
 }
 
 void Automaton::learnFromWord(std::string word){
@@ -20,7 +33,7 @@ void Automaton::learnFromWord(std::string word){
     std::string noeud="#";
    for(int i = 0 ;i<word.length();i++){
        std::string noeud_suiv = word.substr (std::max(0,i-L+1), i - std::max(0,i-L+1) + 1);
-       std::cout << "noeud : " << noeud << std::endl;
+      // std::cout << "noeud : " << noeud << std::endl;
 
        std::map<std::string, Node>::iterator it;
        it = this->mapNode.find(noeud_suiv);
@@ -28,18 +41,18 @@ void Automaton::learnFromWord(std::string word){
        if (it == this->mapNode.end()){
            Node n;
            this->add_map(noeud_suiv, n);
-           std::cout << "Je suis 1" << std::endl;
+        //   std::cout << "Je suis 1" << std::endl;
            }
 
        char followingLetter = noeud_suiv[noeud_suiv.length() - 1];
 
        if (this->mapNode[noeud].getMap().count(followingLetter)>0) {
            this->mapNode[noeud].increment(followingLetter);
-           std::cout << "Je suis 2" << std::endl;
+          // std::cout << "Je suis 2" << std::endl;
        }
        else{
            this->mapNode[noeud].add_map(followingLetter, Vertex(noeud_suiv, 1));
-         std::cout << "Je suis 3" << std::endl;
+         //std::cout << "Je suis 3" << std::endl;
   }
 
        //A BIEN REECRIRE
@@ -60,8 +73,8 @@ void Automaton::learnFromWord(std::string word){
 
        noeud = noeud_suiv;
 
-       std::cout << "following letter " << followingLetter << std::endl;
-       std::cout << "noeud_suiiv : " << noeud_suiv << std::endl;
+       //std::cout << "following letter " << followingLetter << std::endl;
+       //std::cout << "noeud_suiiv : " << noeud_suiv << std::endl;
    }
     /*
     std::map<char, Vertex>::iterator it3;
@@ -102,7 +115,8 @@ void Automaton::generate_word(std::string noeud_suivant) {
 
     if(noeud_suivant != "#"){
       char followingLetter=noeud_suivant[noeud_suivant.length()-1];
-      std::cout<<followingLetter;
+      if (followingLetter != '$'){
+        std::cout<<followingLetter;}
     }
     if (noeud_suivant == "$") {std::cout<<std::endl;}
     else{
