@@ -5,42 +5,107 @@
 
 
 Automaton::Automaton(std::string path, int memoryLength){
-  std::map<int, Node> mp;
-  this->mapNode = mp;
-  this->memoryLength =memoryLength;
+    std::map<std::string , Node> mp;
+    this->mapNode = mp;
+    this->memoryLength = memoryLength;
+    Node n1;
+    Node n2;
+    this->add_map("#", n1);
+    this->add_map("$", n2);
+    
 }
 
 void Automaton::learnFromWord(std::string word){
-   for(int i = 0;i<word.length();i++){
-
-
-//stock première lettre du mot
-//Rq + pour concatener des chaines
-//si le noeud correspondant à cette lettre n'existe pas, le créer
-// si le noeud existe ne rien faire
-
-//incrémenter le vertex # lettre suivante
-
-
-//si on a pas atteint la mémoire limite concatenation avec lettre suivante
-//sinonremplacement de la première lettre par la deuxième etc..
-
-   //if noe
-
+    int L = this->memoryLength;
+    std::string noeud="#";
+   for(int i = 0 ;i<word.length();i++){
+       std::string noeud_suiv = word.substr (std::max(0,i-L+1), i - std::max(0,i-L+1) + 1);
+       std::cout << "noeud : " << noeud << std::endl;
+       
+       std::map<std::string, Node>::iterator it;
+       it = this->mapNode.find(noeud_suiv);
+       
+       if (it == this->mapNode.end()){
+           Node n;
+           this->add_map(noeud_suiv, n);
+           std::cout << "Je suis 1" << std::endl;
+           }
+       
+       char followingLetter = noeud_suiv[noeud_suiv.length() - 1];
+       
+       
+       
+       if (this->mapNode[noeud].getMap().count(followingLetter)>0) {
+           this->mapNode[noeud].increment(followingLetter);
+           std::cout << "Je suis 2" << std::endl;
+       }
+       else{
+           this->mapNode[noeud].add_map(followingLetter, Vertex(noeud_suiv, 1));
+         std::cout << "Je suis 3" << std::endl;
    }
+       
+       //A BIEN REECRIRE
+       /*
+       std::map<char, Vertex>::iterator it2;
+       it2 = this->mapNode[noeud].getMap().find(followingLetter);
+       std::cout << (it2 != this->mapNode[noeud].getMap().end()) << std::endl;
+       
+       if (it2 != this->mapNode[noeud].getMap().end()) {
+           this->mapNode[noeud].increment(followingLetter);
+           std::cout << "Je suis 2" << std::endl;}
+           
+           else {
+               this->mapNode[noeud].add_map(followingLetter, Vertex(noeud_suiv, 1));
+               std::cout << "Je suis 3" << std::endl;
+           }
+        */
+       
+       noeud = noeud_suiv;
+       
+       std::cout << "following letter " << followingLetter << std::endl;
+       std::cout << "noeud_suiiv : " << noeud_suiv << std::endl;
+   }
+    /*
+    std::map<char, Vertex>::iterator it3;
+    it3 = this->mapNode[noeud].getMap().find('$');
+    if (it3 != this->mapNode[noeud].getMap().end())
+        mapNode[noeud].increment('$');
+    else {
+        this->mapNode[noeud].add_map('$', Vertex("$", 1));
+    }*/
+    if (this->mapNode[noeud].getMap().count('$')>0) {
+        this->mapNode[noeud].increment('$');
+    }
+    else{
+        this->mapNode[noeud].add_map('$', Vertex("$", 1));
+
+    }
 }
 
-
-void Automaton::add_map(int idNode, Node node){
-    this->mapNode.insert(std::pair<int,Node>(idNode,node));
+void Automaton::add_map(std::string idNode, Node node){
+    this->mapNode.insert(std::pair<std::string,Node>(idNode,node));
 //this->mapVertex[next] =  v;
 }
 
 void Automaton::display(){
-  std::map<int,Node>::iterator it =this->mapNode.begin();// initialisation de l'itérator en dehors de la boucle
+    std::map<std::string,Node>::iterator it =this->mapNode.begin();
+    
     for(it=this->mapNode.begin();it!=this->mapNode.end();it++){
+        
     std::cout<<it->first<<":"<<std::endl;
     it->second.display();//surcharger par la suite
     std::cout<<std::endl;
     }
 }
+
+
+/*
+void generate_word(std::string noeud) {
+    if (noeud_suivant == "$") {break;}
+    //Find map associated to noeud
+    //Genereate according to the map followingLetter
+    //create noeud_suivant
+    std::cout << followingLetter;
+    generate_word(noeud_suivant);
+}
+*/

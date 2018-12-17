@@ -1,8 +1,9 @@
 #include <iostream>
+#include <string>
 #include "Vertex.h"
 
 
-Vertex::Vertex(int nextNode, float weight){
+Vertex::Vertex(std::string nextNode, float weight){
     this->nextNode = nextNode;
     this->weight = weight;
 }

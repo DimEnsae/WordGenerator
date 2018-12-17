@@ -2,35 +2,33 @@
 #include "Node.h"
 #include <map>
 
-int Node::NodeCount=0;
+//int Node::NodeCount=0;
 
-Node::Node(std::string name, int intNode){
-    this->name = name;
-    this-> intNode = intNode;
-    std::map<std::string, Vertex> mp;
+Node::Node(){
+    std::map<char , Vertex> mp;
     this->mapVertex = mp;
-    NodeCount++; 
  }
 
+std::map<char , Vertex> Node::getMap(){
+    return this->mapVertex;
+}
 
- void Node::add_map(std::string next , Vertex v){
-     this->mapVertex.insert(std::pair<std::string,Vertex>(next,v));
+
+ void Node::add_map(char next , Vertex v){
+     this->mapVertex.insert(std::pair<char ,Vertex>(next,v));
      //this->mapVertex[next] =  v; Why does this not work ?
      //Should we perform a test of key existance ?
  }
 
 void Node::display(){
-    
-    std::cout << "Node : (" << this->intNode << "," << this->name << ")" << std::endl;
-    
-    for(std::map<std::string, Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
+    for(std::map<char , Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
     std::cout<< "\t" << it->first<<"=>";
-    it->second.display();               //surcharger par la suite, ?????
+    it->second.display();              
   }
 }
 
- void Node::increment(std::string followingNode){
-this->mapVertex.find(followingNode)->second.increment(); //second récupère l'élément après la clé
+ void Node::increment(char NextLetter){
+this->mapVertex.find(NextLetter)->second.increment(); //second récupère l'élément après la clé
 }
 
 

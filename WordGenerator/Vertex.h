@@ -1,9 +1,11 @@
+#include <string>
+
 class Vertex{
 private:
-    int nextNode;
+    std::string nextNode;
     float weight;
 public:
-    Vertex(int nextNode, float weight);
+    Vertex(std::string nextNode, float weight);
     void increment();
     void display();
 };
