@@ -37,7 +37,8 @@ int main(){
 
   /*  std::cout << std::endl;*/
 
-     Automaton b("../mobydick.txt", 3);
+     //Automaton b("../mobydick.txt", 3);
+    Automaton b("../data/NewEN.txt", 3);
   //  Automaton b("../german_words.txt", 2);
      /*a.learnFromWord("banane");
      a.learnFromWord("concombre")  ;
@@ -54,14 +55,8 @@ int main(){
     a.generate_word("#");
     a.generate_word("#");*/
 
-    b.generate_word("#");
-    b.generate_word("#");
-    b.generate_word("#");
-    b.generate_word("#");
-    b.generate_word("#");
-    b.generate_word("#");
-    b.generate_word("#");
-    b.generate_word("#");
+    
+    for (int i=0; i<15; i++) {b.generate_word("#");}
   //}/*Node n;
   //  n.add_map('a', Vertex("ba",90));
 
