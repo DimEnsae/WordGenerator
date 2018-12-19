@@ -24,13 +24,13 @@
 
 class Node{
 private:
-    std::map<char , Vertex> mapVertex;
+    std::map<std::string , Vertex> mapVertex;
 
 public:
     Node();
-    std::map<char , Vertex> getMap();
-    void add_map(char next , Vertex v);
+    std::map<std::string , Vertex> getMap();
+    void add_map(std::string next , Vertex v);
     void display();
-    void increment(char NextLetter);
+    void increment(std::string NextLetter);
     std::string select_node_suivant();
 };

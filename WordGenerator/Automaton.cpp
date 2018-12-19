@@ -30,21 +30,13 @@ Automaton::Automaton(std::string path, int memoryLength){
     this->memoryLength = memoryLength;
     Node n1;
     Node n2;
-    this->add_map("#", n1);
+    this->add_map(this->get_init(), n1);
     this->add_map("$", n2);
 
-    std::ifstream ifs(path);
-    std::string v;
-    ifs>>v;
-    while (!ifs.eof()){
-    this->learnFromWord(v);
-    ifs>>v;
-    }
-    ifs.close();
-
+    this->learnFromWord(path);
 }
 
-void Automaton::learnFromWord(std::string word){
+void Automaton::learnFromWord(std::string path){
     
     int L = this->memoryLength;
     std::string noeud[L];
@@ -55,7 +47,11 @@ void Automaton::learnFromWord(std::string word){
     //std::string noeud="#";
     for (int i=0; i<L; i++) {noeud[i] = "#";}
     
-    for(int i = 0 ;i<word.length();i++){
+    std::ifstream ifs(path);
+    std::string v;
+    ifs>>v;
+    while (!ifs.eof()){
+        ifs>>v;
         
         //std::string noeud_suiv = word.substr (std::max(0,i-L+1), i - std::max(0,i-L+1) + 1);
         if (L>1) {
@@ -63,10 +59,10 @@ void Automaton::learnFromWord(std::string word){
                 noeud_suiv[i] = noeud[i+1];
             }
         }
-        noeud_suiv[L-1] = word[i];
+        noeud_suiv[L-1] = v;
         
         noeud_suiv_str = concatenate(noeud_suiv,L);
-        std::cout << noeud_suiv_str << std::endl;
+        //std::cout << noeud_suiv_str << std::endl;
         
         std::map<std::string, Node>::iterator it;
         it = this->mapNode.find(noeud_suiv_str);
@@ -76,8 +72,8 @@ void Automaton::learnFromWord(std::string word){
            this->add_map(noeud_suiv_str, n);
            }
 
-       char followingLetter = noeud_suiv[L-1][0];
-        std::cout << followingLetter << std::endl;
+        std::string followingLetter = noeud_suiv[L-1];
+        //std::cout << followingLetter << std::endl;
 
         noeud_str = concatenate(noeud,L);
        if (this->mapNode[noeud_str].getMap().count(followingLetter)>0) {
@@ -88,22 +84,24 @@ void Automaton::learnFromWord(std::string word){
   }
 
         equal(noeud,noeud_suiv,L);
+    }
+    ifs.close();
 
-   }
     noeud_str = concatenate(noeud,L);
-    if (this->mapNode[noeud_str].getMap().count('$')>0) {
-        this->mapNode[noeud_str].increment('$');
+    if (this->mapNode[noeud_str].getMap().count("$")>0) {
+        this->mapNode[noeud_str].increment("$");
     }
     else{
-        this->mapNode[noeud_str].add_map('$', Vertex("$", 1));
+        this->mapNode[noeud_str].add_map("$", Vertex("$", 1));
 
     }
     this->display();
+    
 }
+
 
 void Automaton::add_map(std::string idNode, Node node){
     this->mapNode.insert(std::pair<std::string,Node>(idNode,node));
-    //this->mapVertex[next] =  v; ?????????
 }
 
 void Automaton::display(){
@@ -119,17 +117,21 @@ void Automaton::display(){
 
 
 
+
 void Automaton::generate_word(std::string noeud_suivant) {
     
     if(noeud_suivant != this->get_init()){
       char followingLetter=noeud_suivant[noeud_suivant.length()-1];
       if (followingLetter != '$'){
-        std::cout<<followingLetter;}
+        std::cout<<followingLetter;
+          
+      }
     }
     
     if (noeud_suivant == "$") {std::cout<<std::endl;}
     
     else{noeud_suivant=this->mapNode[noeud_suivant].select_node_suivant();
+        //std::cout << "c : " << noeud_suivant << std::endl;
         
     generate_word(noeud_suivant);
   }

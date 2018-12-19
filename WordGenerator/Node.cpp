@@ -3,28 +3,27 @@
 #include <map>
 
 Node::Node(){
-    std::map<char , Vertex> mp;
+    std::map<std::string , Vertex> mp;
     this->mapVertex = mp;
  }
 
-std::map<char , Vertex> Node::getMap(){
+std::map<std::string , Vertex> Node::getMap(){
     return this->mapVertex;
 }
 
 
- void Node::add_map(char next , Vertex v){
-     this->mapVertex.insert(std::pair<char ,Vertex>(next,v));
-     //this->mapVertex[next] =  v; Why does this not work ? Should we perform a test of key existance ???????????????
+ void Node::add_map(std::string next , Vertex v){
+     this->mapVertex.insert(std::pair<std::string ,Vertex>(next,v));
  }
 
 void Node::display(){
-    for(std::map<char , Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
+    for(std::map<std::string , Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
     std::cout<< "\t" << it->first<<"=>";
     it->second.display();
   }
 }
 
- void Node::increment(char NextLetter){
+ void Node::increment(std::string NextLetter){
 this->mapVertex.find(NextLetter)->second.increment();}
 
 
@@ -37,10 +36,11 @@ std::string Node::select_node_suivant(){
     
   int cumul=0;
     
-  for(std::map<char , Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
+  for(std::map<std::string , Vertex>::iterator it=this->mapVertex.begin(); it!=this->mapVertex.end();it++){
 
    cumul=cumul+it->second.getWeight();
    weightCumule.insert(std::pair<std::string,int>(it->second.getNextNode(),cumul));
+      //weightCumule.insert(std::pair<std::string,int>(it->first,cumul)); !!!
    }
     
   srand(clock());
