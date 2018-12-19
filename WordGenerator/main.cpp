@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         
         std::cout << "Generated words : " << std::endl;
         
-        for (int i=0; i<nbOfWords; i++) {Auto.generate_word("#");}
+        for (int i=0; i<nbOfWords; i++) {Auto.generate_word(Auto.get_init());}
 
         std::cout << std::endl;
         printf("TIME TAKEN: %.2fs\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);

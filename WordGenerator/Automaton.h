@@ -38,4 +38,5 @@ public:
     void add_map(std::string idNode, Node node);
     void display();
     void generate_word(std::string);
+    std::string get_init();
 };
