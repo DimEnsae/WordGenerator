@@ -4,6 +4,7 @@
 #include <sys/timeb.h>
 #include <ctime>
 #include <fstream>
+#include <array>
 
 //Does not belong IN the class Automaton but is useful here
 std::string concatenate(std::string Tab[], int size) {
@@ -25,9 +26,10 @@ void equal(std::string Tab1[], std::string Tab2[], int size) {
 
 Automaton::Automaton(std::string path, int memoryLength){
     
+    this->memoryLength = memoryLength;
     std::map<std::string , Node> mp;
     this->mapNode = mp;
-    this->memoryLength = memoryLength;
+
     Node n1;
     Node n2;
     this->add_map(this->get_init(), n1);
