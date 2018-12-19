@@ -29,6 +29,9 @@ Automaton::Automaton(std::string path, int memoryLength){
     this->memoryLength = memoryLength;
     std::map<std::string , Node> mp;
     this->mapNode = mp;
+    // typedef std::array<std::string, memoryLength> temp;
+    //std::map<temp , Node> mp;
+    //this->mapNode = mp;p
 
     Node n1;
     Node n2;
