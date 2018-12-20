@@ -5,9 +5,11 @@
 #include <ctime>
 #include <fstream>
 #include <array>
+#include <vector>
+#include <sstream>
 
 //Does not belong IN the class Automaton but is useful here
-std::string concatenate(std::string Tab[], int size) {
+/*std::string concatenate(std::string Tab[], int size) {
     std::string output="";
     for (int i=0; i<(size-1); i++) {
         output += Tab[i];
@@ -15,7 +17,7 @@ std::string concatenate(std::string Tab[], int size) {
     }
     output += Tab[size-1];
     return output;
-}
+}*/
 
 void equal(std::string Tab1[], std::string Tab2[], int size) {
     for (int i=0; i<size; i++) {
@@ -47,8 +49,22 @@ std::string createNew(std::string noeud, std::string newWord, int memory) {
 }
 
 
-Automaton::Automaton(std::string path, int memoryLength){
-    
+std::vector<std::string> split(std::string strToSplit, char delimeter)
+{
+    std::stringstream ss(strToSplit);
+    std::string item;
+    std::vector<std::string> splittedStrings;
+    while (std::getline(ss, item, delimeter))
+    {
+       splittedStrings.push_back(item);
+    }
+    return splittedStrings;
+}
+
+
+Automaton::Automaton(std::string path, int memoryLength,int word){
+    //if word = 1 nodes are words, ord = 0,nodes are letters
+    this->word=word;
     this->memoryLength = memoryLength;
     std::map<std::string , Node> mp;
     this->mapNode = mp;
@@ -61,38 +77,82 @@ Automaton::Automaton(std::string path, int memoryLength){
     this->add_map(this->get_init(), n1);
     this->add_map("$", n2);
 
-    this->learnFromWord(path);
+
+      std::ifstream ifs(path);
+      std::string v;
+      std::string learningObject="";
+      char delim='_';
+
+      if (this->word==0){
+          while (!ifs.eof()){
+              ifs>>v;
+
+              for(int i =0;i<v.length()-1;i++){
+                char tmp=v[i];
+                learningObject=learningObject+tmp+delim;
+              }
+              learningObject=learningObject+v[v.length()-1];
+                this->learnFromWord(learningObject);
+                learningObject="";
+              }
+      }else{
+              std::string learningObject="";
+              while (!ifs.eof()){
+
+       ifs>>v;
+    //   std::cout<<v<<std::endl;
+       if(v[v.length()-1]=='.' || v[v.length()-1]=='!' || v[v.length()-1]=='?' || v[v.length()-1]==':' ){
+
+         if(v.length()==1){learningObject=learningObject+v[0];}
+         else{learningObject=learningObject+v.substr(0,v.length()-1)+delim+v[v.length()-1];} //je considère que les ponctuations sont des mots à part entière..
+         this->learnFromWord(learningObject);
+      //   std::cout<<learningObject<<std::endl;
+         learningObject=""; //manque gestion des virgules et point virgule
+        }else{
+          //manque gestion des virgules et point virgule
+          if(v[v.length()-1]==','||v[v.length()-1]==';'){
+          if(v.length()==1){learningObject=learningObject+v[0]+delim;}
+          else{learningObject=learningObject+v.substr(0,v.length()-1)+delim+v[v.length()-1]+delim;}
+
+        }else{ learningObject=learningObject+v+delim;};
+         //std::cout<<learningObject<<std::endl;
+       }
+       }
+       }
+
+
+
+            ifs.close();
+
+
+
 }
 
-void Automaton::learnFromWord(std::string path){
-    
+void Automaton::learnFromWord(std::string learningObject){
+//learningElement, letters separated by ";""-" or words separated by "-"
+// le ";" est fait pour que ça s'adapte aux strings
     int L = this->memoryLength;
-    //std::string noeud[L];
     std::string noeud_str;
-    //std::string noeud_suiv[L];
     std::string noeud_suiv_str;
-    
-    //std::string noeud="#";
     noeud_str = this->get_init();
-    
-    std::ifstream ifs(path);
-    std::string v;
-    ifs>>v;
-    while (!ifs.eof()){
-        ifs>>v;
-        
-        //std::string noeud_suiv = word.substr (std::max(0,i-L+1), i - std::max(0,i-L+1) + 1);
-        //if (L>1) {
-        //    for (int i=0; i<L-1; i++) {
-        //        noeud_suiv[i] = noeud[i+1];
-        //    }
-       // }
-        noeud_suiv_str = createNew(noeud_str, v, this->memoryLength);
-        //noeud_suiv[L-1] = v;
-        
-        //noeud_suiv_str = concatenate(noeud_suiv,L);
-        //std::cout << noeud_suiv_str << std::endl;
-        
+
+
+
+        //Il me faut une fonction qui compte le nombre de trait
+        //il me faut une fonction qui prend le mot avant chaque "-"
+
+    //    std::cout<<learningObject<<std::endl;
+      std::vector<std::string> LO=split(learningObject,'_');
+for(int  i = 0 ; i<LO.size();i++){
+    //    std::cout<<"tour"<<i<<std::endl;
+
+    /*   char suiv=learningObject[i];
+      std::string del=";";
+        std::string learningElement=del+suiv;
+        std::cout << learningElement << '\n';*/
+        std::string learningElement=LO[i];
+        noeud_suiv_str = createNew(noeud_str, learningElement, this->memoryLength);
+
         std::map<std::string, Node>::iterator it;
         it = this->mapNode.find(noeud_suiv_str);
 
@@ -101,23 +161,17 @@ void Automaton::learnFromWord(std::string path){
            this->add_map(noeud_suiv_str, n);
            }
 
-        //std::string followingWord = noeud_suiv[L-1];
-        //std::cout << followingLetter << std::endl;
-        //std::string followingWord = extractNextWord(noeud_suiv)
-
-       // noeud_str = concatenate(noeud,L);
-       if (this->mapNode[noeud_str].getMap().count(v)>0) {
-           this->mapNode[noeud_str].increment(v);
+        if (this->mapNode[noeud_str].getMap().count(learningElement)>0) {
+           this->mapNode[noeud_str].increment(learningElement);
        }
        else{
-           this->mapNode[noeud_str].add_map(v, Vertex(noeud_suiv_str, 1));
+           this->mapNode[noeud_str].add_map(learningElement, Vertex(noeud_suiv_str, 1));
   }
 
-        //equal(noeud,noeud_suiv,L);
         noeud_str = noeud_suiv_str;
-    }
-    ifs.close();
+  //  }
 
+}
     //noeud_str = concatenate(noeud,L);
     if (this->mapNode[noeud_str].getMap().count("$")>0) {
         this->mapNode[noeud_str].increment("$");
@@ -126,8 +180,8 @@ void Automaton::learnFromWord(std::string path){
         this->mapNode[noeud_str].add_map("$", Vertex("$", 1));
 
     }
-    this->display();
-    
+  //  this->display();
+
 }
 
 
@@ -150,22 +204,24 @@ void Automaton::display(){
 
 
 void Automaton::generate_word(std::string noeud_suivant) {
-    
+
     if(noeud_suivant != this->get_init()){
       //char followingLetter=noeud_suivant[noeud_suivant.length()-1];
         std::string following = extractNextWord(noeud_suivant);
       if (following != "$"){
         std::cout<<following;
+
+       if (this->word==1){//seule condition qui différencie l'affichage de phrase et celle de lettre.
         std::cout << " ";
-          
+      }
       }
     }
-    
+
     if (noeud_suivant == "$") {std::cout<<std::endl;}
-    
+
     else{noeud_suivant=this->mapNode[noeud_suivant].select_node_suivant();
 
-        
+
     generate_word(noeud_suivant);
   }
 }
@@ -173,7 +229,7 @@ void Automaton::generate_word(std::string noeud_suivant) {
 
 std::string Automaton::get_init(){
     std::string init="";
-    
+
     if (this->memoryLength>0) {
     for (int i=0; i<(this->memoryLength-1); i++) {init += "#_";}
     init += "#";
