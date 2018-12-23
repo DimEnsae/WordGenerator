@@ -33,10 +33,12 @@ L'utilisateur peut ensuite s'en servir pour génerer du texte au terminal.
 
 
 - Datasets
-Le dossier data contient plusieur toy sets dont : 
-
-
-
+Le dossier data contient plusieurs toy sets dont :
+- dictionnaires anglais, Français, espagnol et Hongrois
+- Listes des noms de pokemons en Français en Anglais (génération 1 à 4)
+- Moby Dick
+- Liste de noms d'animaux
+- Un mixte noms d'animaux et de pokemons
 
 ### GitHub Steps
 
@@ -93,3 +95,7 @@ Git branch Name
 ```
 Git checkout Name
 ```
+
+ajouter heatmap de transition
+plus de tests sur les textes
+expliquation detaille des maths sous-jacantes
