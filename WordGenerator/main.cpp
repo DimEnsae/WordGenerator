@@ -16,7 +16,7 @@ MODE = 1 pour generer du texte, 0 pour des mots
  
  Exemple d'entree au terminal :
  
- ./main ../data/NewEN.txt 3 3 0
+ ./main ../data/NewEN.txt 3 0
  
  */
 
