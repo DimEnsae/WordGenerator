@@ -6,32 +6,32 @@
 
 /*------------------------- AUTOMATON -------------------------------------
 
-Stock l'integralite du graphe contenu dans le corpus.
+A partir d'un corpus de texte stock l'information sous forme de graphe.
+ 
+ Arguments du constructeurs:
+    -path, path menant au corpus
+    -memoryLength, ordre de la chaine de Markov (L)
+    -word, deux options
+        word = 0 chaque noeud du graphe est un L-anagramme le graphe sert a generer des mots
+        word = 1 chaque noeud du graphe est un ensemble de L mots le graphe sert a generer du texte
 
  Arguments:
-    -map {next, Vertex}
- -key, charactere avec lequel on sort du noeud, par exemple si on regarde le mot bol avec un memory length de 2 et qu'on est sur le noeud "bo" on sort avec le charactere 'l' qui nous ammene ou noeud "ol", la map contiendra donc {'l', ("ol", weight)}
- -Values, Vertex associe a la sortiem dans l'exemple precedent: ("ol", weight)
+    -memoryLength
+    -word
+    -map {NameNode, Node}
+ -key, nom du noeud en chaine de charactere (ex ban pour un 3-anagramme, Je_suis_Bob pour du texte)
+ -Values, Node associe
 
  Methodes:
- -Un seul constructeur,
-    -memoryLength, ordre de la chaine de Markov
-    -path, adresse physique du corpus
- -getMap, accesseur de la map
- -add_map, ajout d'un element {next, Vertex} dans la map
-
- -increment, appel la methode increment du Vertex associé au charactere de sortie
- -display, affiche la map sous la forme
- l => (ol,1)
-
- --a completer
+ -Un seul constructeur
+ -learnFromWord ...
 
  ----------------------------------------------------------------*/
 
 class Automaton{
 private:
-    int memoryLength;
-    int word;
+    int memoryLength; //Length of the Markov Chain
+    int word; //Creation mode
     std::map<std::string,Node> mapNode;
 public:
     Automaton(std::string path, int memoryLength, int word);

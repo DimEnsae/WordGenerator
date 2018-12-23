@@ -8,7 +8,7 @@
  Arguments: couple (nextNode , weight)
  
  -nextNode: vers quel noeud pointe le vertex
- -weight: poids du vertex
+ -weight: poids du vertex (nombre de fois ou on a parcouru le vertex)
  
  Methodes:
  -Un seul contructeur

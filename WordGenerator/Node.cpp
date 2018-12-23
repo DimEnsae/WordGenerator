@@ -40,7 +40,6 @@ std::string Node::select_node_suivant(){
 
    cumul=cumul+it->second.getWeight();
    weightCumule.insert(std::pair<std::string,int>(it->second.getNextNode(),cumul));
-      //weightCumule.insert(std::pair<std::string,int>(it->first,cumul)); !!!
    }
     
   srand(clock());
