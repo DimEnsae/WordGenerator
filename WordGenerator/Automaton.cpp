@@ -1,18 +1,15 @@
 #include <iostream>
 #include "Automaton.h"
 #include <map>
-#include <sys/timeb.h>
-#include <ctime>
+//#include <sys/timeb.h>
+//#include <ctime>
 #include <fstream>
-#include <array>
+//#include <array>
 #include <vector>
-#include <sstream>
-
-//Amelioration gestion de la ponctuation ?
-//Gestion des majuscules ?
-
+#include <sstream> //pour split
 
 std::string extractNextWord(std::string noeud_suivant_str) {
+    //From a sequence of the form noeud_suivant_str = a1_a2_a3_..._an extract an
     std::string nextWord="";
     for (int i = (noeud_suivant_str.length()-1); i>=0; i--) {
         if (noeud_suivant_str[i]!='_') {nextWord = noeud_suivant_str[i] + nextWord;}
@@ -23,7 +20,7 @@ std::string extractNextWord(std::string noeud_suivant_str) {
 
 
 std::string createNew(std::string noeud, std::string newWord, int memory) {
-    //Delete First underscore
+    //From a sequence noeud = a1_a2_a3_..._an-1_an and newWord = a create a2_a3_..._an-1_an_a
     if (memory>1) {
     int count=0;
     for (int i = 0; i<noeud.length(); i++) {
@@ -38,7 +35,7 @@ std::string createNew(std::string noeud, std::string newWord, int memory) {
 
 
 std::vector<std::string> split(std::string strToSplit, char delimeter)
-// ??????????????????
+    //split selon un delimiteur
 {
     std::stringstream ss(strToSplit);
     std::string item;
@@ -52,7 +49,7 @@ std::vector<std::string> split(std::string strToSplit, char delimeter)
 
 
 Automaton::Automaton(std::string path, int memoryLength,int word){
-    //if word = 1 nodes are words, word = 0, nodes are letters
+    //if word = 1 nodes are words,  if word = 0 nodes are letters
     this->word=word;
     this->memoryLength = memoryLength;
     std::map<std::string , Node> mp;
@@ -60,15 +57,15 @@ Automaton::Automaton(std::string path, int memoryLength,int word){
 
     Node n1;
     Node n2;
-    this->add_map(this->get_init(), n1);
-    this->add_map("$", n2); // "$" symbole de fin de mot/phrase
+    this->add_map(this->get_init(), n1); //Creation noeud debut
+    this->add_map("$", n2); // Creation noeud debut "$" symbole de fin de mot/phrase
     
     std::ifstream ifs(path);
     
     if (ifs) {
 
         std::string v;
-        std::string learningObject="";
+        std::string learningObject=""; //Stock l'objet d'apprentissage, c'est un mot si word = 0, une phrase si word = 1
         char delim='_';
 
         if (this->word==0){
@@ -90,7 +87,7 @@ Automaton::Automaton(std::string path, int memoryLength,int word){
         else{
             while (!ifs.eof()){
                 ifs>>v;
-                if(v[v.length()-1]=='.' || v[v.length()-1]=='!' || v[v.length()-1]=='?' || v[v.length()-1]==':' ){
+                if(v[v.length()-1]=='.' || v[v.length()-1]=='!' || v[v.length()-1]=='?'){
                     //Cree des noeuds isoles pour la ponctuation
                     if(v.length()==1) {
                         learningObject=learningObject+v[0];
@@ -105,7 +102,7 @@ Automaton::Automaton(std::string path, int memoryLength,int word){
                 }
                 
                 else {
-                    if(v[v.length()-1]==','||v[v.length()-1]==';') {
+                    if(v[v.length()-1]==','||v[v.length()-1]==';' || v[v.length()-1]==':') {
                         if(v.length()==1){
                             learningObject=learningObject+v[0]+delim;
                         }
@@ -129,21 +126,14 @@ Automaton::Automaton(std::string path, int memoryLength,int word){
 
 
 void Automaton::learnFromWord(std::string learningObject){
-                //learningElement, letters separated by ";""-" or words separated by "-"
-                // le ";" est fait pour que ça s'adapte aux strings ??? -> Explication Clement
+    //Fonction de remplissage du graph
+    //learningElement, letters separated by "-" or words separated by "-"
     int L = this->memoryLength;
     std::string noeud_str;
     std::string noeud_suiv_str;
     noeud_str = this->get_init();
-                //Il me faut une fonction qui compte le nombre de trait -> Pourquoi ?
-                //il me faut une fonction qui prend le mot avant chaque "-" -> Pourquoi ?
     std::vector<std::string> LO=split(learningObject,'_');
     for(int  i = 0 ; i<LO.size();i++){
-                //std::cout<<"tour"<<i<<std::endl;
-                /*   char suiv=learningObject[i];
-                std::string del=";";
-                std::string learningElement=del+suiv;
-                std::cout << learningElement << '\n';---> ?????????????   */
         std::string learningElement=LO[i];
         noeud_suiv_str = createNew(noeud_str, learningElement, this->memoryLength);
 
