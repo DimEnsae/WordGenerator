@@ -1,3 +1,1 @@
-banane
-bois
-loi
+banane bois loi
