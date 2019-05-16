@@ -4,6 +4,8 @@
 
 Générateur de textes/mots. À l’aide d’un corpus de texte ou de mots (œuvre littéraire d’un auteur disponible sur Gutenberg, etc) on souhaite obtenir des textes/mots générés automatiquement à l’aide d’un modèle de chaîne de Markov. Ex : Ikea
 
+Projet_C contient un compte rendu du travail fourni.
+
 ### Manual
 
 - Compilation
