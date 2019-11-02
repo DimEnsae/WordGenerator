@@ -10,6 +10,7 @@ In this project we present a word generator as well as a text generator. Using a
 ### Manual
 
 - Compilation
+
 Clone the repo and place yourself in the WordGenerator folder. A Makefile takes care of the compilation command (using g++), just enter the command:
 ```
 make
@@ -37,7 +38,7 @@ The user can then use it to generate text from the terminal.
 
 ### Datasets
 
-The 'data' folder contains several toy sets including:
+The `data` folder contains several toy sets including:
 - English, French, Spanish and Hungarian dictionaries
 - List of pokemon names in French and in English (generation 1 to 4)
 - Moby Dick novel
