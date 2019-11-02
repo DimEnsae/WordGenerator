@@ -28,12 +28,12 @@ Examples:
 ./main ../data/NewEN.txt 3 0
 ``` 
 Uses the dictionary `NewEN.txt` and builds the "letters" graph of the Markov chain of associated order 3.
-The user can then use it to generate words from the terminal.
+The user will then be prompted to generate words from terminal.
 ```
 ./main ../data/mobydick.txt 4 1
 ``` 
 Uses the novel Moby Dick and builds the "words" graph of the Markov chain of associated fourth order.
-The user can then use it to generate text from the terminal.
+The user will then be prompted to generate words from terminal.
 
 
 ### Datasets
