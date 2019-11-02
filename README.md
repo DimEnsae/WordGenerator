@@ -10,35 +10,36 @@ In this project we present a word generator as well as a text generator. Using a
 ### Manual
 
 - Compilation
-Cloner le repo et se placer dans le dossier de codes WordGenerator. Un Makefile s'occupe de la commande de compilation, il suffit d'entrer la commande 
+Clone the repo and place yourself in the WordGenerator folder. A Makefile takes care of the compilation command (using g++), just enter the command:
 ```
 make
 ```
-La compilation se fait sous g++ normalement pré-installé sur Mac.
+Compiling is done under g++, which is normally pre-installed on Mac.
 
--Utilisation 
+-Use
 
-Au terminal, appelez le fichier "main" issue de la compilation suivi d'un PATH donnant l'adresse d'un corpus, d'un entier MEMORYLENGTH donnant l'ordre de la chaîne de Markov, et d'un entier 0/1 donnant le MODE de création du graphe (1 pour générer du texte, 0 pour générér des mots). 
+Call the `main` file from the compilation followed by a PATH giving the address of a corpus, a MEMORYLENGTH integer giving the order of the Markov Chain, and a 0/1 integer giving the MODE to create the graph (1 to generate text, 0 to generate words):
 ```
 ./main PATH MEMORYLENGTH MODE
 ``` 
-Exemples: 
+Examples: 
 ```
 ./main ../data/NewEN.txt 3 0
 ``` 
-Utilise le dictionnaire "NewEN.txt" et construit le graphe "lettres" de la chaine de Markov d'ordre 3 associée.
-L'utilisateur peut ensuite s'en servir pour génerer des mots au terminal.
+Uses the dictionary `NewEN.txt` and builds the "letters" graph of the Markov chain of associated order 3.
+The user can then use it to generate words from the terminal.
 ```
 ./main ../data/mobydick.txt 4 1
 ``` 
-Utilise le roman Moby Dick et construit le graphe "mots" de la chaine de Markov d'ordre 4 associée.
-L'utilisateur peut ensuite s'en servir pour génerer du texte au terminal.
+Uses the novel Moby Dick and builds the "words" graph of the Markov chain of associated fourth order.
+The user can then use it to generate text from the terminal.
 
 
-- Datasets
-Le dossier data contient plusieurs toy sets dont :
-- dictionnaires anglais, Français, espagnol et Hongrois
-- Listes des noms de pokemons en Français en Anglais (génération 1 à 4)
-- Moby Dick
-- Liste de noms d'animaux
-- Un mixte noms d'animaux et de pokemons
+### Datasets
+
+The 'data' folder contains several toy sets including:
+- English, French, Spanish and Hungarian dictionaries
+- List of pokemon names in French and in English (generation 1 to 4)
+- Moby Dick novel
+- List of animal names
+- A mix of animal and pokemon names
