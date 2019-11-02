@@ -1,8 +1,8 @@
-# Projet C++
+# C++ Project
 
-### Sujet
+### Subject
 
-In this project we present a word generator as well as a text generator. Using a corpus of texts we want to obtain texts/words generated automatically using a Markov chain model. The model is really simple and was made to demonstrate our ability to code in C++ for a second year project at ENSAE Paris. This was project was awarded the best mark for the C++ class.
+In this project we present a word generator as well as a text generator. Using a corpus of texts we want to obtain texts/words generated automatically using a Markov chain model. The model is really simple and was made to demonstrate our ability to code in C++ for a second year project at ENSAE Paris. This project obtained the best mark for the C++ 2018 class.
 
 `Projet_C.pdf` contains a report of the work provided (in French).
 
