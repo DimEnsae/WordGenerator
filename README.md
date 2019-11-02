@@ -2,9 +2,10 @@
 
 ### Sujet
 
-Générateur de textes/mots. À l’aide d’un corpus de texte ou de mots (œuvre littéraire d’un auteur disponible sur Gutenberg, etc) on souhaite obtenir des textes/mots générés automatiquement à l’aide d’un modèle de chaîne de Markov. Ex : Ikea
+In this project we present a word generator as well as a text generator. Using a corpus of texts we want to obtain texts/words generated automatically using a Markov chain model. The model is really simple and was made to demonstrate our ability to code in C++ for a second year project at ENSAE Paris. This was project was awarded the best mark for the C++ class.
 
-Projet_C contient un compte rendu du travail fourni.
+`Projet_C.pdf` contains a report of the work provided (in French).
+
 
 ### Manual
 
